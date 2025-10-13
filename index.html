@@ -2266,18 +2266,36 @@ autoFillOncePerVariant(variantSel.value);
     const v=VARIANTS[key]||{};
     const variantName=v.name||'Hard Hat';
 
-    // Artwork-only PNGs from art layers
-    const frontArt=front.layerArt.toDataURL({pixelRatio:2});
-    const backArt =back.layerArt.toDataURL({pixelRatio:2});
-    const leftArt =left.layerArt.toDataURL({pixelRatio:2});
-    const rightArt=right.layerArt.toDataURL({pixelRatio:2});
+    async function captureStageDataURL(side){
+      if(!side || !side.stage || typeof side.stage.toDataURL!=='function') return null;
+      const toggles=[];
+      function hideNode(node){
+        if(!node || typeof node.visible!=='function') return;
+        toggles.push({node,visible:node.visible()});
+        node.visible(false);
+      }
+      hideNode(side.layerUI);
+      hideNode(side.printAreaRect);
+      try{
+        if(typeof side.stage.draw==='function'){ side.stage.draw(); }
+        return side.stage.toDataURL({pixelRatio:2});
+      }catch(err){
+        console.warn('Stage capture failed', side.id, err);
+        return null;
+      }finally{
+        for(let i=toggles.length-1;i>=0;i--){
+          const item=toggles[i];
+          try{ item.node.visible(item.visible); }catch(e){ /* ignore */ }
+        }
+        if(typeof side.stage.draw==='function'){ side.stage.draw(); }
+      }
+    }
 
-    // Base images (optional; continue if blocked)
-    const [frontAB,backAB,leftAB,rightAB,logoAB]=await Promise.all([
-      fetchAsArrayBufferSafe(v.front),
-      fetchAsArrayBufferSafe(v.back),
-      fetchAsArrayBufferSafe(v.left),
-      fetchAsArrayBufferSafe(v.right),
+    const [frontStageDataURL, backStageDataURL, leftStageDataURL, rightStageDataURL, logoAB] = await Promise.all([
+      captureStageDataURL(front),
+      captureStageDataURL(back),
+      captureStageDataURL(left),
+      captureStageDataURL(right),
       fetchAsArrayBufferSafe(LOGO_URL)
     ]);
 
@@ -2346,22 +2364,20 @@ y -= lineH+8;
     const card  = Math.min(maxW, maxH, 130); // square tile size cap
     const cardW = card, cardH = card;
 
-    // Embed base images for each side (if available)
-    const vestFront=await embedImageAuto(pdf,frontAB,v.front);
-    const vestBack =await embedImageAuto(pdf,backAB, v.back);
-    const vestLeft =await embedImageAuto(pdf,leftAB, v.left);
-    const vestRight=await embedImageAuto(pdf,rightAB,v.right);
-
-    async function drawSide(side, vestEmbedded, artDataUrl, xLeft, yTop, label){
-      if(vestEmbedded && side?.bounds && side?.stage){
-        const b=side.bounds;
-        const scale=cardW/side.stage.width();
-        page.drawImage(vestEmbedded,{ x:xLeft+b.x*scale, y:yTop+b.y*scale, width:b.w*scale, height:b.h*scale });
-      }
-      if(artDataUrl){
-        const artBuf=await (await fetch(artDataUrl)).arrayBuffer();
-        const artPng=await pdf.embedPng(artBuf);
-        page.drawImage(artPng,{ x:xLeft, y:yTop, width:cardW, height:cardH });
+    async function drawSide(stageDataUrl, xLeft, yTop, label){
+      if(stageDataUrl){
+        try{
+          const stageBuf=await (await fetch(stageDataUrl)).arrayBuffer();
+          const stageImg=await pdf.embedPng(stageBuf);
+          const scale=Math.min(cardW/stageImg.width, cardH/stageImg.height);
+          const drawW=stageImg.width*scale;
+          const drawH=stageImg.height*scale;
+          const drawX=xLeft+(cardW-drawW)/2;
+          const drawY=yTop+(cardH-drawH)/2;
+          page.drawImage(stageImg,{ x:drawX, y:drawY, width:drawW, height:drawH });
+        }catch(err){
+          console.warn('Failed to embed stage for', label, err);
+        }
       }
       const w=font.widthOfTextAtSize(label,10);
       page.drawText(label,{ x:xLeft+(cardW-w)/2, y:yTop-14, size:10, font });
@@ -2374,12 +2390,12 @@ y -= lineH+8;
     const y2 = gridTop - (cardH + GAP);
 
     // Row 1: Front | Back
-    await drawSide(front, vestFront, frontArt, x1, y1, 'Front');
-    await drawSide(back,  vestBack,  backArt,  x2, y1, 'Back');
+    await drawSide(frontStageDataURL, x1, y1, 'Front');
+    await drawSide(backStageDataURL,  x2, y1, 'Back');
 
     // Row 2: Left | Right
-    await drawSide(left,  vestLeft,  leftArt,  x1, y2, 'Left');
-    await drawSide(right, vestRight, rightArt, x2, y2, 'Right');
+    await drawSide(leftStageDataURL,  x1, y2, 'Left');
+    await drawSide(rightStageDataURL, x2, y2, 'Right');
 
 // ---- Right-side column of logo previews (Front, Back, Left, Right) ----
 
