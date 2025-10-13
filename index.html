@@ -28,7 +28,21 @@
 <div style="font-weight: bold;">Front</div>
 <div style="display: flex; align-items: center; gap: 8px;"><span id="selFront" style="font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #f4f4f5;"><b>File:</b> None</span> <span id="dpiFront" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #f4f4f5; display: none;"></span></div>
 </div>
-<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Front <input type="file" id="upFront" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="cloneFtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delFront">Delete Selected</button></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Front <input type="file" id="upFront" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="textFrontBtn">Text</button> <button class="btn outline" id="cloneFtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delFront">Delete Selected</button></div>
+<div id="textFrontControls" style="display: none; align-items: center; gap: 8px; flex-wrap: wrap; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 8px 10px; margin: 0 0 10px 0;">
+  <input id="textFrontInput" type="text" maxlength="60" placeholder="Add text" style="flex: 1; min-width: 180px; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;" />
+  <select id="textFrontFont" style="padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+    <option value="Arial" selected="selected">Arial</option>
+    <option value="Helvetica">Helvetica</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Verdana">Verdana</option>
+    <option value="Impact">Impact</option>
+  </select>
+  <input id="textFrontSize" type="number" min="8" max="96" value="24" style="width: 70px; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;" />
+  <input id="textFrontColor" type="color" value="#111111" style="width: 46px; height: 36px; padding: 0; border: 1px solid #d1d5db; border-radius: 6px;" />
+  <button type="button" class="btn" id="textFrontApply">Place Text</button>
+  <button type="button" class="btn outline" id="textFrontCancel">Cancel</button>
+</div>
 <div style="font-size: 12px; color: #4b5563; margin: -6px 0 8px 0;">Accepted formats: PNG, JPG, JPEG, WEBP, SVG</div>
 <div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff;">
 <div id="stageFront"></div>
@@ -40,7 +54,21 @@
 <div style="font-weight: bold;">Back</div>
 <div style="display: flex; align-items: center; gap: 8px;"><span id="selBack" style="font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #f4f4f5;"><b>File:</b> None</span> <span id="dpiBack" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #f4f4f5; display: none;"></span></div>
 </div>
-<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Back <input type="file" id="upBack" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="cloneBtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delBack">Delete Selected</button></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Back <input type="file" id="upBack" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="textBackBtn">Text</button> <button class="btn outline" id="cloneBtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delBack">Delete Selected</button></div>
+<div id="textBackControls" style="display: none; align-items: center; gap: 8px; flex-wrap: wrap; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 8px 10px; margin: 0 0 10px 0;">
+  <input id="textBackInput" type="text" maxlength="60" placeholder="Add text" style="flex: 1; min-width: 180px; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;" />
+  <select id="textBackFont" style="padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+    <option value="Arial" selected="selected">Arial</option>
+    <option value="Helvetica">Helvetica</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Verdana">Verdana</option>
+    <option value="Impact">Impact</option>
+  </select>
+  <input id="textBackSize" type="number" min="8" max="96" value="24" style="width: 70px; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;" />
+  <input id="textBackColor" type="color" value="#111111" style="width: 46px; height: 36px; padding: 0; border: 1px solid #d1d5db; border-radius: 6px;" />
+  <button type="button" class="btn" id="textBackApply">Place Text</button>
+  <button type="button" class="btn outline" id="textBackCancel">Cancel</button>
+</div>
 <div style="font-size: 12px; color: #4b5563; margin: -6px 0 8px 0;">Accepted formats: PNG, JPG, JPEG, WEBP, SVG</div>
 <div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff;">
 <div id="stageBack"></div>
@@ -52,7 +80,21 @@
 <div style="font-weight: bold;">Left</div>
 <div style="display: flex; align-items: center; gap: 8px;"><span id="selLeft" style="font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #f4f4f5;"><b>File:</b> None</span> <span id="dpiLeft" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #f4f4f5; display: none;"></span></div>
 </div>
-<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Left <input type="file" id="upLeft" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="cloneLtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delLeft">Delete Selected</button></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Left <input type="file" id="upLeft" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="textLeftBtn">Text</button> <button class="btn outline" id="cloneLtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delLeft">Delete Selected</button></div>
+<div id="textLeftControls" style="display: none; align-items: center; gap: 8px; flex-wrap: wrap; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 8px 10px; margin: 0 0 10px 0;">
+  <input id="textLeftInput" type="text" maxlength="60" placeholder="Add text" style="flex: 1; min-width: 180px; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;" />
+  <select id="textLeftFont" style="padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+    <option value="Arial" selected="selected">Arial</option>
+    <option value="Helvetica">Helvetica</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Verdana">Verdana</option>
+    <option value="Impact">Impact</option>
+  </select>
+  <input id="textLeftSize" type="number" min="8" max="96" value="24" style="width: 70px; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;" />
+  <input id="textLeftColor" type="color" value="#111111" style="width: 46px; height: 36px; padding: 0; border: 1px solid #d1d5db; border-radius: 6px;" />
+  <button type="button" class="btn" id="textLeftApply">Place Text</button>
+  <button type="button" class="btn outline" id="textLeftCancel">Cancel</button>
+</div>
 <div style="font-size: 12px; color: #4b5563; margin: -6px 0 8px 0;">Accepted formats: PNG, JPG, JPEG, WEBP, SVG</div>
 <div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff;">
 <div id="stageLeft"></div>
@@ -64,7 +106,21 @@
 <div style="font-weight: bold;">Right</div>
 <div style="display: flex; align-items: center; gap: 8px;"><span id="selRight" style="font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #f4f4f5;"><b>File:</b> None</span> <span id="dpiRight" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #f4f4f5; display: none;"></span></div>
 </div>
-<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Right <input type="file" id="upRight" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="cloneRtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delRight">Delete Selected</button></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Right <input type="file" id="upRight" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="textRightBtn">Text</button> <button class="btn outline" id="cloneRtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delRight">Delete Selected</button></div>
+<div id="textRightControls" style="display: none; align-items: center; gap: 8px; flex-wrap: wrap; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 8px 10px; margin: 0 0 10px 0;">
+  <input id="textRightInput" type="text" maxlength="60" placeholder="Add text" style="flex: 1; min-width: 180px; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;" />
+  <select id="textRightFont" style="padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;">
+    <option value="Arial" selected="selected">Arial</option>
+    <option value="Helvetica">Helvetica</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Verdana">Verdana</option>
+    <option value="Impact">Impact</option>
+  </select>
+  <input id="textRightSize" type="number" min="8" max="96" value="24" style="width: 70px; padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px;" />
+  <input id="textRightColor" type="color" value="#111111" style="width: 46px; height: 36px; padding: 0; border: 1px solid #d1d5db; border-radius: 6px;" />
+  <button type="button" class="btn" id="textRightApply">Place Text</button>
+  <button type="button" class="btn outline" id="textRightCancel">Cancel</button>
+</div>
 <div style="font-size: 12px; color: #4b5563; margin: -6px 0 8px 0;">Accepted formats: PNG, JPG, JPEG, WEBP, SVG</div>
 <div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff;">
 <div id="stageRight"></div>
@@ -1395,6 +1451,40 @@ class Side {
       this.dpiBadge=document.getElementById(opts.dpiBadgeId);
       this.deleteBtn=document.getElementById(opts.deleteBtnId);
       this.uploadInp=document.getElementById(opts.uploadId);
+      this.textBtn=document.getElementById(opts.textBtnId);
+      this.textControls={
+        wrapper: document.getElementById(opts.textControlsId),
+        input: document.getElementById(opts.textInputId),
+        font: document.getElementById(opts.textFontId),
+        size: document.getElementById(opts.textSizeId),
+        color: document.getElementById(opts.textColorId),
+        apply: document.getElementById(opts.textApplyId),
+        cancel: document.getElementById(opts.textCancelId)
+      };
+      this.textDefaults={font:'Arial',size:24,color:'#111111'};
+      if(this.textControls.wrapper){
+        this.textControls.wrapper.dataset.mode='add';
+      }
+      if(this.textControls.input){
+        this.textControls.input.addEventListener('keydown',(ev)=>{
+          if(ev.key==='Enter' && !ev.shiftKey && !ev.ctrlKey && !ev.metaKey && !ev.altKey && !ev.isComposing){
+            ev.preventDefault();
+            this.applyTextFromControls();
+          }
+        });
+      }
+      if(this.textBtn && this.textControls.wrapper){
+        this.textBtn.addEventListener('click',()=> this.handleTextButton());
+        if(this.textControls.cancel){
+          this.textControls.cancel.addEventListener('click',()=> this.hideTextControls());
+        }
+        if(this.textControls.apply){
+          this.textControls.apply.addEventListener('click',()=> this.applyTextFromControls());
+        }
+      }
+      if(this.textControls.wrapper){
+        this.prepareTextFormDefaults();
+      }
 
       const mount=document.getElementById(this.mountId);
       const W=Math.min(560,(mount.clientWidth||560));
@@ -1440,15 +1530,9 @@ class Side {
             width:iw*scale, height:ih*scale,
             draggable:true, name:'draggableItem', label:f.name
           });
-          node.on('dragmove', ()=> this.clamp(node));
-          node.on('dragend', () => this.updateDPIForNode(node));
-          node.on('transform', ()=> {
-            this.clamp(node);
-            this.updateDPIForNode(node);
-          });
-          node.on('transformend', () => this.updateDPIForNode(node));
-
-          this.layerArt.add(node); 
+          this.attachHandlersForNode(node);
+          this.layerArt.add(node);
+          this.clamp(node);
           this.layerArt.draw();
           this.setSelected(node);
 
@@ -1459,10 +1543,10 @@ class Side {
 
       // delete
       this.deleteBtn.addEventListener('click', ()=>{
-        const sel=this.tr.nodes()[0]; if(!sel) return;
-        sel.destroy(); this.tr.nodes([]); this.layerArt.draw(); this.layerUI.draw();
-        this.selBadge.textContent='File: None';
-        this.hideDPIDisplay();
+        const sel=this.selected(); if(!sel) return;
+        sel.destroy();
+        this.layerArt.draw();
+        this.setSelected(null);
       });
     }
 
@@ -1546,6 +1630,242 @@ class Side {
       }
     }
 
+    handleTextButton(){
+      if(!this.textControls.wrapper) return;
+      const isVisible=this.textControls.wrapper.style.display==='flex';
+      if(isVisible){
+        this.hideTextControls();
+        return;
+      }
+      const sel=this.selected();
+      if(sel && this.isTextNode(sel)){
+        this.populateTextForm(sel);
+        this.textControls.wrapper.dataset.mode='edit';
+        if(this.textControls.apply){ this.textControls.apply.textContent='Update Text'; }
+      }else{
+        this.prepareTextFormDefaults();
+        this.textControls.wrapper.dataset.mode='add';
+        if(this.textControls.apply){ this.textControls.apply.textContent='Place Text'; }
+      }
+      this.textControls.wrapper.style.display='flex';
+      if(this.textControls.input){
+        this.textControls.input.focus();
+        this.textControls.input.select();
+      }
+    }
+
+    hideTextControls(){
+      if(!this.textControls.wrapper) return;
+      this.textControls.wrapper.style.display='none';
+      this.textControls.wrapper.dataset.mode='add';
+      if(this.textControls.apply){ this.textControls.apply.textContent='Place Text'; }
+      this.prepareTextFormDefaults();
+    }
+
+    prepareTextFormDefaults(){
+      if(!this.textControls.wrapper) return;
+      if(this.textControls.input){ this.textControls.input.value=''; }
+      if(this.textControls.font){
+        const fallback=this.textDefaults.font;
+        const desired=fallback;
+        const hasOption=Array.from(this.textControls.font.options||[]).some(opt=>opt.value===desired);
+        if(hasOption){
+          this.textControls.font.value=desired;
+        }else{
+          this.textControls.font.selectedIndex=0;
+        }
+      }
+      if(this.textControls.size){
+        this.textControls.size.value=this.textDefaults.size;
+      }
+      if(this.textControls.color){
+        this.textControls.color.value=this.textDefaults.color;
+      }
+    }
+
+    populateTextForm(node){
+      if(!this.textControls.wrapper || !node) return;
+      if(this.textControls.input){ this.textControls.input.value=node.text?.() || ''; }
+      if(this.textControls.font){
+        const font=node.fontFamily?.() || this.textDefaults.font;
+        const options=Array.from(this.textControls.font.options||[]);
+        if(options.some(opt=>opt.value===font)){
+          this.textControls.font.value=font;
+        }else if(options.some(opt=>opt.value===this.textDefaults.font)){
+          this.textControls.font.value=this.textDefaults.font;
+        }else if(options.length){
+          this.textControls.font.selectedIndex=0;
+        }
+      }
+      if(this.textControls.size){
+        const size=node.fontSize?.();
+        this.textControls.size.value=size ? Math.round(size) : this.textDefaults.size;
+      }
+      if(this.textControls.color){
+        this.textControls.color.value=this.colorToHex(node.fill?.());
+      }
+    }
+
+    applyTextFromControls(){
+      if(!this.textControls.wrapper) return;
+      const textValue=(this.textControls.input?.value || '').trim();
+      if(!textValue){
+        alert('Please enter text.');
+        this.textControls.input?.focus();
+        return;
+      }
+      const fontFamily=this.textControls.font?.value || this.textDefaults.font;
+      let fontSize=parseInt(this.textControls.size?.value,10);
+      if(!Number.isFinite(fontSize)) fontSize=this.textDefaults.size;
+      fontSize=Math.max(6, Math.min(96, fontSize));
+      const color=this.textControls.color?.value || this.textDefaults.color;
+      const mode=this.textControls.wrapper.dataset.mode || 'add';
+      if(mode==='edit'){
+        const sel=this.selected();
+        if(sel && this.isTextNode(sel)){
+          sel.text(textValue);
+          sel.fontFamily(fontFamily);
+          sel.fontSize(fontSize);
+          sel.fill(color);
+          sel.setAttr('label',`Text: ${textValue}`);
+          sel.offsetX(sel.width()/2);
+          sel.offsetY(sel.height()/2);
+          this.clamp(sel);
+          this.layerArt.draw();
+          this.setSelected(sel);
+          this.hideTextControls();
+          return;
+        }
+      }
+      const targetBounds=this.printBounds || this.bounds;
+      const textNode=new Konva.Text({
+        text:textValue,
+        fontFamily,
+        fontSize,
+        fill:color,
+        align:'center',
+        draggable:true,
+        name:'draggableItem',
+        label:`Text: ${textValue}`,
+        padding:4
+      });
+      textNode.x(targetBounds.x + targetBounds.w/2);
+      textNode.y(targetBounds.y + targetBounds.h/2);
+      textNode.offsetX(textNode.width()/2);
+      textNode.offsetY(textNode.height()/2);
+      this.attachHandlersForNode(textNode);
+      this.layerArt.add(textNode);
+      this.clamp(textNode);
+      this.layerArt.draw();
+      this.setSelected(textNode);
+      window.lastUpload={side:this,node:textNode};
+      this.hideTextControls();
+    }
+
+    colorToHex(color){
+      if(!color) return this.textDefaults.color;
+      try{
+        if(typeof Konva==='undefined' || !Konva.Util || !Konva.Util.getRGB) throw new Error('no konva util');
+        const rgb=Konva.Util.getRGB(color);
+        if(!rgb || [rgb.r,rgb.g,rgb.b].some(v=>Number.isNaN(v))) throw new Error('invalid color');
+        const toHex=v=> Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0');
+        return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;
+      }catch(e){
+        return this.textDefaults.color;
+      }
+    }
+
+    isTextNode(node){
+      return !!(node && typeof node.getClassName==='function' && node.getClassName()==='Text');
+    }
+
+    attachArtworkHandlers(node,{type}={}){
+      if(!node) return;
+      node.off('dragmove');
+      node.off('dragend');
+      node.off('transform');
+      node.off('transformend');
+      node.on('dragmove',()=>{
+        this.clamp(node);
+        this.layerArt.batchDraw();
+      });
+      if(type==='text'){
+        node.on('dragend',()=>{
+          this.clamp(node);
+          this.layerArt.draw();
+          this.layerUI.batchDraw();
+        });
+        node.on('transform',()=>{
+          this.clamp(node);
+          this.layerArt.batchDraw();
+        });
+        node.on('transformend',()=>{
+          const scaleX=node.scaleX() || 1;
+          const scaleY=node.scaleY() || 1;
+          const avg=(scaleX+scaleY)/2;
+          const baseSize=node.fontSize();
+          node.fontSize(Math.max(6, baseSize*avg));
+          node.scaleX(1);
+          node.scaleY(1);
+          node.offsetX(node.width()/2);
+          node.offsetY(node.height()/2);
+          this.clamp(node);
+          this.layerArt.draw();
+          this.layerUI.batchDraw();
+        });
+      }else{
+        node.on('dragend',()=>{
+          this.updateDPIForNode(node);
+          this.layerArt.draw();
+          this.layerUI.batchDraw();
+        });
+        node.on('transform',()=>{
+          this.clamp(node);
+          this.updateDPIForNode(node);
+          this.layerArt.batchDraw();
+        });
+        node.on('transformend',()=>{
+          this.updateDPIForNode(node);
+          this.layerArt.draw();
+          this.layerUI.batchDraw();
+        });
+      }
+    }
+
+    attachHandlersForNode(node){
+      if(!node) return;
+      node.draggable(true);
+      if(typeof node.name==='function'){ node.name('draggableItem'); }
+      if(this.isTextNode(node)){
+        node.offsetX(node.width()/2);
+        node.offsetY(node.height()/2);
+        node.setAttr('label',node.getAttr('label') || `Text: ${node.text?.()||''}`);
+        this.attachArtworkHandlers(node,{type:'text'});
+      }else{
+        this.attachArtworkHandlers(node,{type:'image'});
+      }
+    }
+
+    syncTextControlsForSelection(node){
+      if(!this.textControls.wrapper) return;
+      const isVisible=this.textControls.wrapper.style.display==='flex';
+      if(node && this.isTextNode(node)){
+        if(isVisible){
+          this.populateTextForm(node);
+          if(this.textControls.apply){ this.textControls.apply.textContent='Update Text'; }
+        }
+        this.textControls.wrapper.dataset.mode='edit';
+      }else{
+        if(isVisible){
+          if(this.textControls.wrapper.dataset.mode!=='add'){
+            this.prepareTextFormDefaults();
+          }
+          if(this.textControls.apply){ this.textControls.apply.textContent='Place Text'; }
+        }
+        this.textControls.wrapper.dataset.mode='add';
+      }
+    }
+
     async setBase(url){
       const img=url?await loadImage(url):null;
       if(!img){
@@ -1588,27 +1908,94 @@ class Side {
       this.layerUI.batchDraw();
       if(node){
         this.selBadge.textContent=`File: ${node.getAttr('label')||node.name()}`;
-        this.updateDPIForNode(node);
+        const dpi=this.calculateNodeDPI(node);
+        if(dpi){
+          this.updateDPIDisplay(dpi);
+        }else{
+          this.hideDPIDisplay();
+        }
       }else{
         this.selBadge.textContent='File: None';
         this.hideDPIDisplay();
       }
+      this.syncTextControlsForSelection(node);
     }
 
     selected(){ return this.tr.nodes()[0] || null; }
 
     receiveClone(konvaNode){
       const clone=konvaNode.clone({listening:true});
+      this.attachHandlersForNode(clone);
       this.layerArt.add(clone); this.clamp(clone); this.layerArt.draw(); this.setSelected(clone);
       window.lastUpload={side:this,node:clone};
     }
   }
 
   // Instantiate 4 sides
-  const front=new Side({id:'front', mountId:'stageFront', selBadgeId:'selFront', dpiBadgeId:'dpiFront', deleteBtnId:'delFront', uploadId:'upFront'});
-const back =new Side({id:'back',  mountId:'stageBack',  selBadgeId:'selBack',  dpiBadgeId:'dpiBack',  deleteBtnId:'delBack',  uploadId:'upBack'});
-const left =new Side({id:'left',  mountId:'stageLeft',  selBadgeId:'selLeft',  dpiBadgeId:'dpiLeft',  deleteBtnId:'delLeft',  uploadId:'upLeft'});
-const right=new Side({id:'right', mountId:'stageRight', selBadgeId:'selRight', dpiBadgeId:'dpiRight', deleteBtnId:'delRight', uploadId:'upRight'});
+  const front=new Side({
+    id:'front',
+    mountId:'stageFront',
+    selBadgeId:'selFront',
+    dpiBadgeId:'dpiFront',
+    deleteBtnId:'delFront',
+    uploadId:'upFront',
+    textBtnId:'textFrontBtn',
+    textControlsId:'textFrontControls',
+    textInputId:'textFrontInput',
+    textFontId:'textFrontFont',
+    textSizeId:'textFrontSize',
+    textColorId:'textFrontColor',
+    textApplyId:'textFrontApply',
+    textCancelId:'textFrontCancel'
+  });
+const back =new Side({
+    id:'back',
+    mountId:'stageBack',
+    selBadgeId:'selBack',
+    dpiBadgeId:'dpiBack',
+    deleteBtnId:'delBack',
+    uploadId:'upBack',
+    textBtnId:'textBackBtn',
+    textControlsId:'textBackControls',
+    textInputId:'textBackInput',
+    textFontId:'textBackFont',
+    textSizeId:'textBackSize',
+    textColorId:'textBackColor',
+    textApplyId:'textBackApply',
+    textCancelId:'textBackCancel'
+  });
+const left =new Side({
+    id:'left',
+    mountId:'stageLeft',
+    selBadgeId:'selLeft',
+    dpiBadgeId:'dpiLeft',
+    deleteBtnId:'delLeft',
+    uploadId:'upLeft',
+    textBtnId:'textLeftBtn',
+    textControlsId:'textLeftControls',
+    textInputId:'textLeftInput',
+    textFontId:'textLeftFont',
+    textSizeId:'textLeftSize',
+    textColorId:'textLeftColor',
+    textApplyId:'textLeftApply',
+    textCancelId:'textLeftCancel'
+  });
+const right=new Side({
+    id:'right',
+    mountId:'stageRight',
+    selBadgeId:'selRight',
+    dpiBadgeId:'dpiRight',
+    deleteBtnId:'delRight',
+    uploadId:'upRight',
+    textBtnId:'textRightBtn',
+    textControlsId:'textRightControls',
+    textInputId:'textRightInput',
+    textFontId:'textRightFont',
+    textSizeId:'textRightSize',
+    textColorId:'textRightColor',
+    textApplyId:'textRightApply',
+    textCancelId:'textRightCancel'
+  });
 
 
 // === CASCADING DROPDOWN FILTERING ===
