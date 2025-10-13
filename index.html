@@ -101,6 +101,7 @@
  * ----------------------------- */
 
 const LOGO_URL = "https://cdn11.bigcommerce.com/s-ap39xxpmw2/images/stencil/original/image-manager/tablet-banner.png";
+const STAGE_REFERENCE_INCHES = 6;
 
 // Print area dimensions (as percentage of helmet base image)
 const PRINT_AREA_CONFIG = {
@@ -1440,17 +1441,16 @@ class Side {
             draggable:true, name:'draggableItem', label:f.name
           });
           node.on('dragmove', ()=> this.clamp(node));
-          node.on('transform', ()=> this.clamp(node));
+          node.on('dragend', () => this.updateDPIForNode(node));
+          node.on('transform', ()=> {
+            this.clamp(node);
+            this.updateDPIForNode(node);
+          });
+          node.on('transformend', () => this.updateDPIForNode(node));
 
           this.layerArt.add(node); 
           this.layerArt.draw();
           this.setSelected(node);
-
-          const printBounds = this.printBounds || this.bounds;
-          const printWidthInches = (printBounds.w / this.stage.width()) * 6;
-          const printHeightInches = (printBounds.h / this.stage.height()) * 6;
-          const dpi = calculateDPI(iw, ih, printWidthInches, printHeightInches);
-          this.updateDPIDisplay(dpi);
 
           window.lastUpload={side:this,node};
           e.target.value='';
@@ -1503,9 +1503,33 @@ class Side {
       this.layerBg.draw();
     }
 
+    calculateNodeDPI(node) {
+      if (!node) return null;
+
+      const img = node.image();
+      if (!img) return null;
+
+      const naturalWidth = img.naturalWidth || img.width;
+      const naturalHeight = img.naturalHeight || img.height;
+      const rect = node.getClientRect({ relativeTo: this.stage });
+      const widthInches = (rect.width / this.stage.width()) * STAGE_REFERENCE_INCHES;
+      const heightInches = (rect.height / this.stage.height()) * STAGE_REFERENCE_INCHES;
+
+      if (widthInches <= 0 || heightInches <= 0) return null;
+
+      return calculateDPI(naturalWidth, naturalHeight, widthInches, heightInches);
+    }
+
+    updateDPIForNode(node) {
+      const dpi = this.calculateNodeDPI(node);
+      if (dpi) {
+        this.updateDPIDisplay(dpi);
+      }
+    }
+
     updateDPIDisplay(dpi) {
       if (!this.dpiBadge) return;
-      
+
       const quality = getDPIQuality(dpi);
       const dpiRounded = Math.round(dpi);
       
@@ -1562,7 +1586,13 @@ class Side {
     setSelected(node){
       this.tr.nodes(node?[node]:[]);
       this.layerUI.batchDraw();
-      this.selBadge.textContent=node?`File: ${node.getAttr('label')||node.name()}`:'File: None';
+      if(node){
+        this.selBadge.textContent=`File: ${node.getAttr('label')||node.name()}`;
+        this.updateDPIForNode(node);
+      }else{
+        this.selBadge.textContent='File: None';
+        this.hideDPIDisplay();
+      }
     }
 
     selected(){ return this.tr.nodes()[0] || null; }
