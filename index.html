@@ -1586,33 +1586,54 @@ const variantSel = document.getElementById('variantSel');
 const vendorSel = document.getElementById('vendor');
 const colorSel = document.getElementById('colorSel');
 
+const COLOR_NAMES = [
+  'White','Black','Yellow','Blue','Gray','Grey','Orange','Red','Green','Hi-Viz Yellow','Hi-Vis Yellow','Hi-Viz Orange','Hi-Vis Orange','Pink','Teal','Gold','Khaki','Navy Blue','Royal Blue','Forest Green','Performance Blue','Carbon','FiberMetal','White Carbon','HiVis Yellow'
+];
+const COLOR_LOOKUP = new Map(COLOR_NAMES.map(color => [color.toLowerCase(), color]));
+
 function extractColor(variantName) {
-  const patterns = [
-    /- (White|Black|Yellow|Blue|Gray|Grey|Orange|Red|Green|Hi-Viz Yellow|Hi-Vis Yellow|Hi-Viz Orange|Hi-Vis Orange|Pink|Teal|Gold|Khaki|Navy Blue|Royal Blue|Forest Green|Performance Blue|Carbon|FiberMetal|White Carbon) -/i,
-    /- (White|Black|Yellow|Blue|Gray|Grey|Orange|Red|Green|Hi-Viz Yellow|Hi-Vis Yellow|Hi-Viz Orange|Hi-Vis Orange|Pink|Teal|Gold|Khaki|Navy Blue|Royal Blue|Forest Green|Performance Blue|Carbon|FiberMetal|White Carbon)$/i
-  ];
-  for (const pattern of patterns) {
-    const match = variantName.match(pattern);
-    if (match) return match[1];
+  if (!variantName) return null;
+  const segments = variantName.split(' - ').map(seg => seg.trim()).filter(Boolean);
+  for (let i = segments.length - 1; i >= 0; i--) {
+    const normalized = segments[i].toLowerCase();
+    if (COLOR_LOOKUP.has(normalized)) {
+      return COLOR_LOOKUP.get(normalized);
+    }
   }
   return null;
 }
 
-function removeColor(variantName) {
-  const color = extractColor(variantName);
-  if (!color) return variantName;
-  return variantName.replace(new RegExp(`- ${color}`, 'gi'), '').replace(/\s+-\s+$/, '').trim();
+function getBaseVariantName(variant) {
+  if (!variant || !variant.name) return '';
+  const segments = variant.name.split(' - ').map(seg => seg.trim()).filter(Boolean);
+  if (!segments.length) return variant.name;
+
+  const productCode = (variant.productCode || '').trim().toLowerCase();
+  if (productCode && segments[segments.length - 1].toLowerCase() === productCode) {
+    segments.pop();
+  }
+
+  const color = extractColor(variant.name);
+  if (color) {
+    const colorIndex = segments.findIndex(seg => seg.toLowerCase() === color.toLowerCase());
+    if (colorIndex !== -1) {
+      segments.splice(colorIndex, 1);
+    }
+  }
+
+  return segments.join(' - ');
 }
 
 function getUniqueBaseVariants(filteredByVendor) {
   const baseNames = new Map();
   filteredByVendor.forEach(([key, v]) => {
-    const baseName = removeColor(v.name);
-    if (!baseNames.has(baseName)) {
-      baseNames.set(baseName, key);
+    const baseName = getBaseVariantName(v) || v.name || key;
+    const normalized = baseName.toLowerCase();
+    if (!baseNames.has(normalized)) {
+      baseNames.set(normalized, baseName);
     }
   });
-  return Array.from(baseNames.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+  return Array.from(baseNames.values()).sort((a, b) => a.localeCompare(b));
 }
 
 function getColorsForBaseVariant(selectedVendor, baseVariantName) {
@@ -1621,7 +1642,7 @@ function getColorsForBaseVariant(selectedVendor, baseVariantName) {
     if (selectedVendor && selectedVendor !== '' && selectedVendor !== 'Other') {
       if (v.vendor !== selectedVendor) return;
     }
-    const baseName = removeColor(v.name);
+    const baseName = getBaseVariantName(v);
     if (baseName === baseVariantName) {
       const color = extractColor(v.name);
       if (color) colors.add(color);
@@ -1636,46 +1657,76 @@ function updateVariantDropdown(selectedVendor) {
     if (selectedVendor === 'Other') return true;
     return v.vendor === selectedVendor;
   });
-  
+
   const baseVariants = getUniqueBaseVariants(filteredByVendor);
-  
-  variantSel.innerHTML = '<option value="">-- Select Hard Hat --</option>' + 
-    baseVariants.map(([baseName, key]) => `<option value="${baseName}">${baseName}</option>`).join('');
-  
+
+  variantSel.innerHTML = '';
+  const defaultVariantOption = document.createElement('option');
+  defaultVariantOption.value = '';
+  defaultVariantOption.textContent = '-- Select Hard Hat --';
+  variantSel.appendChild(defaultVariantOption);
+  baseVariants.forEach(baseName => {
+    const option = document.createElement('option');
+    option.value = baseName;
+    option.textContent = baseName;
+    variantSel.appendChild(option);
+  });
+
   variantSel.value = '';
-  colorSel.innerHTML = '<option value="">-- Select Hard Hat First --</option>';
+  colorSel.innerHTML = '';
+  const defaultColorOption = document.createElement('option');
+  defaultColorOption.value = '';
+  defaultColorOption.textContent = '-- Select Hard Hat First --';
+  colorSel.appendChild(defaultColorOption);
   colorSel.disabled = true;
 }
 
 function updateColorDropdown(selectedVendor, baseVariantName) {
   if (!baseVariantName || baseVariantName === '') {
-    colorSel.innerHTML = '<option value="">-- Select Hard Hat First --</option>';
+    colorSel.innerHTML = '';
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = '-- Select Hard Hat First --';
+    colorSel.appendChild(defaultOption);
     colorSel.disabled = true;
     return;
   }
-  
+
   const colors = getColorsForBaseVariant(selectedVendor, baseVariantName);
-  
+
   if (colors.length === 0) {
-    colorSel.innerHTML = '<option value="">-- No colors available --</option>';
+    colorSel.innerHTML = '';
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = '-- No colors available --';
+    colorSel.appendChild(defaultOption);
     colorSel.disabled = true;
     return;
   }
-  
-  colorSel.innerHTML = '<option value="">-- Select Color --</option>' + 
-    colors.map(c => `<option value="${c}">${c}</option>`).join('');
+
+  colorSel.innerHTML = '';
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = '-- Select Color --';
+  colorSel.appendChild(defaultOption);
+  colors.forEach(color => {
+    const option = document.createElement('option');
+    option.value = color;
+    option.textContent = color;
+    colorSel.appendChild(option);
+  });
   colorSel.disabled = false;
   colorSel.value = '';
 }
 
 function applyVariantBySelection(selectedVendor, baseVariantName, selectedColor) {
   if (!baseVariantName || !selectedColor || selectedColor === '') return;
-  
+
   const match = Object.entries(VARIANTS).find(([key, v]) => {
     if (selectedVendor && selectedVendor !== '' && selectedVendor !== 'Other') {
       if (v.vendor !== selectedVendor) return false;
     }
-    const baseName = removeColor(v.name);
+    const baseName = getBaseVariantName(v);
     if (baseName !== baseVariantName) return false;
     const variantColor = extractColor(v.name);
     if (variantColor !== selectedColor) return false;
@@ -1683,7 +1734,7 @@ function applyVariantBySelection(selectedVendor, baseVariantName, selectedColor)
   });
   
   if (match) {
-    const [key, variant] = match;
+    const [key] = match;
     applyVariant(key);
   }
 }
