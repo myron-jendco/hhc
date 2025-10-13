@@ -1,0 +1,2015 @@
+<!-- =======================
+     JENDCO HARD HAT CUSTOMIZER (WYSIWYG SAFE, INLINE STYLES)
+     ======================= -->
+<div id="vest-customizer-root" style="max-width: 1200px; margin: 0 auto; padding: 16px;">
+<h1 style="text-align: center; margin: 0 0 8px 0;"><img src="https://cdn11.bigcommerce.com/s-ap39xxpmw2/images/stencil/original/image-manager/tablet-banner.png" alt="Jendco" style="width: 25%; height: auto; max-width: 280px;" /></h1>
+<h2 style="text-align: center; margin: 0 0 20px 0; font-weight: bold; color: #111;">Jendco Hard Hat Logo</h2>
+<!-- Vendor -->
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;"><label for="vendor" style="width: 180px; font-weight: 600;">Vendor</label><select id="vendor" style="flex: 1; border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; font-size: 14px;">
+<option value="">-- Select Vendor --</option>
+<option value="Kask">Kask</option>
+<option value="Lift">Lift Safety</option>
+<option value="MSA">MSA</option>
+<option value="Studson">Studson</option>
+<option value="Other">Other</option>
+</select></div>
+<!-- Hard Hat Variant -->
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;"><label for="variantSel" style="width: 180px; font-weight: 600;">Hard Hat Variant</label><select id="variantSel" style="flex: 1; border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; font-size: 14px;"><!-- JS will inject helmet options here --></select></div>
+<!-- Color Selection -->
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;"><label for="colorSel" style="width: 180px; font-weight: 600;">Color</label><select id="colorSel" style="flex: 1; border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; font-size: 14px;" disabled="disabled">
+<option value="">-- Select Hard Hat First --</option>
+</select></div>
+<!-- Product Style -->
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;"><label for="productStyle" style="width: 180px; font-weight: 600;">Product Code</label> <input id="productStyle" type="text" placeholder="e.g., Full Brim, Climbing Style" style="flex: 1; border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; font-size: 14px;" /></div>
+<!-- 2×2 Canvas Grid -->
+<div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: flex-start;"><!-- FRONT -->
+<div class="panel" id="frontPanel" style="border: 1px solid #e6e6e6; border-radius: 12px; padding: 12px; background: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.08);">
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+<div style="font-weight: bold;">Front</div>
+<div style="display: flex; align-items: center; gap: 8px;"><span id="selFront" style="font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #f4f4f5;"><b>File:</b> None</span> <span id="dpiFront" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #f4f4f5; display: none;"></span></div>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Front <input type="file" id="upFront" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="cloneFtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delFront">Delete Selected</button></div>
+<div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff;">
+<div id="stageFront"></div>
+</div>
+</div>
+<!-- BACK -->
+<div class="panel" id="backPanel" style="border: 1px solid #e6e6e6; border-radius: 12px; padding: 12px; background: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.08);">
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+<div style="font-weight: bold;">Back</div>
+<div style="display: flex; align-items: center; gap: 8px;"><span id="selBack" style="font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #f4f4f5;"><b>File:</b> None</span> <span id="dpiBack" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #f4f4f5; display: none;"></span></div>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Back <input type="file" id="upBack" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="cloneBtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delBack">Delete Selected</button></div>
+<div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff;">
+<div id="stageBack"></div>
+</div>
+</div>
+<!-- LEFT -->
+<div class="panel" id="leftPanel" style="border: 1px solid #e6e6e6; border-radius: 12px; padding: 12px; background: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.08);">
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+<div style="font-weight: bold;">Left</div>
+<div style="display: flex; align-items: center; gap: 8px;"><span id="selLeft" style="font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #f4f4f5;"><b>File:</b> None</span> <span id="dpiLeft" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #f4f4f5; display: none;"></span></div>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Left <input type="file" id="upLeft" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="cloneLtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delLeft">Delete Selected</button></div>
+<div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff;">
+<div id="stageLeft"></div>
+</div>
+</div>
+<!-- RIGHT -->
+<div class="panel" id="rightPanel" style="border: 1px solid #e6e6e6; border-radius: 12px; padding: 12px; background: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.08);">
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+<div style="font-weight: bold;">Right</div>
+<div style="display: flex; align-items: center; gap: 8px;"><span id="selRight" style="font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #f4f4f5;"><b>File:</b> None</span> <span id="dpiRight" style="font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #f4f4f5; display: none;"></span></div>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0;"><label class="btn outline" style="position: relative; display: inline-block;"> Upload to Right <input type="file" id="upRight" accept=".png,.jpg,.jpeg,.webp,.svg" style="display: none;" /> </label> <button class="btn outline" id="cloneRtoAll">Clone selected &rarr; All</button> <button class="btn outline" id="delRight">Delete Selected</button></div>
+<div style="border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff;">
+<div id="stageRight"></div>
+</div>
+</div>
+</div>
+<!-- Order / Print Details -->
+<div class="panel" style="border: 1px solid #e6e6e6; border-radius: 12px; padding: 12px; background: #fff; margin-top: 12px; box-shadow: 0 6px 20px rgba(15,23,42,.08);">
+<h3 align="center" style="margin: 8px 0 16px 0;"><u><font size="5">Order / Print Details</font></u></h3>
+<!-- Logo Location -->
+<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;"><label for="logoLoc" style="width: 180px; font-weight: 600;">Logo Location</label><select id="logoLoc" style="flex: 1; border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; font-size: 14px;">
+<option value="Front">Front</option>
+<option value="Back">Back</option>
+<option value="Left">Left</option>
+<option value="Right">Right</option>
+</select></div>
+<!-- Quantity -->
+<div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;"><label for="qty" style="width: 180px; font-weight: 600;">Quantity</label> <input id="qty" type="number" min="0" step="1" value="0" style="flex: 1; border: 1px solid #ccc; border-radius: 6px; padding: 6px 10px; font-size: 14px;" /></div>
+<!-- Customer Info -->
+<div id="custInfo" style="display: grid; grid-template-columns: 180px 260px; gap: 6px 10px; align-items: center; max-width: 480px; margin-top: 12px;">
+<div style="grid-column: 1/-1; font-weight: 600; margin-bottom: 4px;"><u><font size="5">Customer Information</font></u></div>
+<span>Customer Name</span><input id="custName" type="text" placeholder="Company / Organization" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Contact Name</span><input id="contactName" type="text" placeholder="Full name" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Email</span><input id="custEmail" type="email" placeholder="name@example.com" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Phone</span><input id="custPhone" type="tel" placeholder="(555) 555-5555" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Sales Order #</span><input id="salesOrder" type="text" placeholder="e.g., SO-12345" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Notes</span><input id="custNotes" type="text" maxlength="140" placeholder="Enter up to 140 characters" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /></div>
+<div style="margin-top: 20px; text-align: left;"><button id="downloadProof" class="btn" style="background: #ff7a00; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer;">Download Proof PDF</button></div>
+</div>
+</div>
+<!-- Libraries -->
+<p>
+<script src="https://cdn.jsdelivr.net/npm/konva@9.3.16/konva.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+(function(){
+/* -----------------------------
+ * Config / Variants (your URLs)
+ * ----------------------------- */
+
+const LOGO_URL = "https://cdn11.bigcommerce.com/s-ap39xxpmw2/images/stencil/original/image-manager/tablet-banner.png";
+
+// Print area dimensions (as percentage of helmet base image)
+const PRINT_AREA_CONFIG = {
+  front: { x: 0.30, y: 0.35, width: 0.40, height: 0.30 },  // centered rectangle
+  back:  { x: 0.30, y: 0.35, width: 0.40, height: 0.30 },
+  left:  { x: 0.35, y: 0.40, width: 0.30, height: 0.25 },  // side positioning
+  right: { x: 0.35, y: 0.40, width: 0.30, height: 0.25 }
+};
+
+const VARIANTS = {
+  _10242629: {
+    name: `V-Gard H2 Safety Helmet - Vented - White - 10242629`,
+    vendor: `MSA`,
+    productCode: `10242629`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242629-V-Gard-H2-White-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242629-V-Gard-H2-White-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242629-V-Gard-H2-White-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242629-V-Gard-H2-White-Vented-RS.png`
+  },
+  _10242630: {
+    name: `V-Gard H2 Safety Helmet - Vented - Black - 10242630`,
+    vendor: `MSA`,
+    productCode: `10242630`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242630-V-Gard-H2-Black-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242630-V-Gard-H2-Black-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242630-V-Gard-H2-Black-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242630-V-Gard-H2-Black-Vented-RS.png`
+  },
+  _10242631: {
+    name: `V-Gard H2 Safety Helmet - Vented - Yellow - 10242631`,
+    vendor: `MSA`,
+    productCode: `10242631`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242631-V-Gard-H2-Yellow-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242631-V-Gard-H2-Yellow-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242631-V-Gard-H2-Yellow-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242631-V-Gard-H2-Yellow-Vented-RS.png`
+  },
+  _10242632: {
+    name: `V-Gard H2 Safety Helmet - Vented - Blue - 10242632`,
+    vendor: `MSA`,
+    productCode: `10242632`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242632-V-Gard-H2-Blue-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242632-V-Gard-H2-Blue-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242632-V-Gard-H2-Blue-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242632-V-Gard-H2-Blue-Vented-RS.png`
+  },
+  _10242633: {
+    name: `V-Gard H2 Safety Helmet - Vented - Gray - 10242633`,
+    vendor: `MSA`,
+    productCode: `10242633`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242633-V-Gard-H2-Grey-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242633-V-Gard-H2-Grey-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242633-V-Gard-H2-Grey-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242633-V-Gard-H2-Grey-Vented-RS.png`
+  },
+  _10242634: {
+    name: `V-Gard H2 Safety Helmet - Vented - Hi-Viz Yellow - 10242634`,
+    vendor: `MSA`,
+    productCode: `10242634`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242634-V-Gard-H2-Hi-Viz Yellow-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242634-V-Gard-H2-Hi-Viz Yellow-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242634-V-Gard-H2-Hi-Viz Yellow-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242634-V-Gard-H2-Hi-Viz Yellow-Vented-RS.png`
+  },
+  _10242635: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - White - 10242635`,
+    vendor: `MSA`,
+    productCode: `10242635`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242635-V-Gard-H2-White-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242635-V-Gard-H2-White-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242635-V-Gard-H2-White-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242635-V-Gard-H2-White-Novent-RS.png`
+  },
+  _10242636: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - Black - 10242636`,
+    vendor: `MSA`,
+    productCode: `10242636`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242636-V-Gard-H2-Black-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242636-V-Gard-H2-Black-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242636-V-Gard-H2-Black-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242636-V-Gard-H2-Black-Novent-RS.png`
+  },
+  _10242637: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - Yellow - 10242637`,
+    vendor: `MSA`,
+    productCode: `10242637`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242637-V-Gard-H2-Yellow-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242637-V-Gard-H2-Yellow-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242637-V-Gard-H2-Yellow-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242637-V-Gard-H2-Yellow-Novent-RS.png`
+  },
+  _10242638: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - Blue - 10242638`,
+    vendor: `MSA`,
+    productCode: `10242638`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242638-V-Gard-H2-Blue-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242638-V-Gard-H2-Blue-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242638-V-Gard-H2-Blue-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242638-V-Gard-H2-Blue-Novent-RS.png`
+  },
+  _10242639: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - Gray - 10242639`,
+    vendor: `MSA`,
+    productCode: `10242639`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242639-V-Gard-H2-Grey-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242639-V-Gard-H2-Grey-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242639-V-Gard-H2-Grey-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242639-V-Gard-H2-Grey-Novent-RS.png`
+  },
+  _10242640: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - Hi-Viz Yellow - 10242640`,
+    vendor: `MSA`,
+    productCode: `10242640`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242640-V-Gard-H2-Hi-Viz Yellow-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242640-V-Gard-H2-Hi-Viz Yellow-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242640-V-Gard-H2-Hi-Viz Yellow-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242640-V-Gard-H2-Hi-Viz Yellow-Novent-RS.png`
+  },
+  _10242807: {
+    name: `V-Gard H2 Safety Helmet - Vented - Orange - 10242807`,
+    vendor: `MSA`,
+    productCode: `10242807`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242807-V-Gard-H2-Orange-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242807-V-Gard-H2-Orange-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242807-V-Gard-H2-Orange-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242807-V-Gard-H2-Orange-Vented-RS.png`
+  },
+  _10242808: {
+    name: `V-Gard H2 Safety Helmet - Vented - Red - 10242808`,
+    vendor: `MSA`,
+    productCode: `10242808`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242808-V-Gard-H2-Red-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242808-V-Gard-H2-Red-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242808-V-Gard-H2-Red-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242808-V-Gard-H2-Red-Vented-RS.png`
+  },
+  _10242809: {
+    name: `V-Gard H2 Safety Helmet - Vented - Green - 10242809`,
+    vendor: `MSA`,
+    productCode: `10242809`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242809-V-Gard-H2-Green-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242809-V-Gard-H2-Green-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242809-V-Gard-H2-Green-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242809-V-Gard-H2-Green-Vented-RS.png`
+  },
+  _10242810: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - Orange - 10242810`,
+    vendor: `MSA`,
+    productCode: `10242810`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242810-V-Gard-H2-Orange-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242810-V-Gard-H2-Orange-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242810-V-Gard-H2-Orange-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242810-V-Gard-H2-Orange-Novent-RS.png`
+  },
+  _10242811: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - Red - 10242811`,
+    vendor: `MSA`,
+    productCode: `10242811`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242811-V-Gard-H2-Red-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242811-V-Gard-H2-Red-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242811-V-Gard-H2-Red-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242811-V-Gard-H2-Red-Novent-RS.png`
+  },
+  _10242812: {
+    name: `V-Gard H2 Safety Helmet - Non-Vented - Green - 10242812`,
+    vendor: `MSA`,
+    productCode: `10242812`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242812-V-Gard-H2-Green-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242812-V-Gard-H2-Green-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242812-V-Gard-H2-Green-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242812-V-Gard-H2-Green-Novent-RS.png`
+  },
+  _10242813: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - White - 10242813`,
+    vendor: `MSA`,
+    productCode: `10242813`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242813-V-Gard-H2-Mips-White-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242813-V-Gard-H2-Mips-White-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242813-V-Gard-H2-Mips-White-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242813-V-Gard-H2-Mips-White-Vented-RS.png`
+  },
+  _10242814: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - Black - 10242814`,
+    vendor: `MSA`,
+    productCode: `10242814`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242814-V-Gard-H2-Mips-Black-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242814-V-Gard-H2-Mips-Black-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242814-V-Gard-H2-Mips-Black-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242814-V-Gard-H2-Mips-Black-Vented-RS.png`
+  },
+  _10242815: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - Yellow - 10242815`,
+    vendor: `MSA`,
+    productCode: `10242815`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242815-V-Gard-H2-Mips-Yellow-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242815-V-Gard-H2-Mips-Yellow-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242815-V-Gard-H2-Mips-Yellow-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242815-V-Gard-H2-Mips-Yellow-Vented-RS.png`
+  },
+  _10242816: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - Blue - 10242816`,
+    vendor: `MSA`,
+    productCode: `10242816`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242816-V-Gard-H2-Mips-Blue-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242816-V-Gard-H2-Mips-Blue-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242816-V-Gard-H2-Mips-Blue-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242816-V-Gard-H2-Mips-Blue-Vented-RS.png`
+  },
+  _10242817: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - Gray - 10242817`,
+    vendor: `MSA`,
+    productCode: `10242817`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242817-V-Gard-H2-Mips-Grey-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242817-V-Gard-H2-Mips-Grey-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242817-V-Gard-H2-Mips-Grey-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242817-V-Gard-H2-Mips-Grey-Vented-RS.png`
+  },
+  _10242818: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - Orange - 10242818`,
+    vendor: `MSA`,
+    productCode: `10242818`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242818-V-Gard-H2-Mips-Orange-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242818-V-Gard-H2-Mips-Orange-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242818-V-Gard-H2-Mips-Orange-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242818-V-Gard-H2-Mips-Orange-Vented-RS.png`
+  },
+  _10242819: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - Red - 10242819`,
+    vendor: `MSA`,
+    productCode: `10242819`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242819-V-Gard-H2-Mips-Red-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242819-V-Gard-H2-Mips-Red-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242819-V-Gard-H2-Mips-Red-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242819-V-Gard-H2-Mips-Red-Vented-RS.png`
+  },
+  _10242820: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - Green - 10242820`,
+    vendor: `MSA`,
+    productCode: `10242820`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242820-V-Gard-H2-Mips-Green-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242820-V-Gard-H2-Mips-Green-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242820-V-Gard-H2-Mips-Green-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242820-V-Gard-H2-Mips-Green-Vented-RS.png`
+  },
+  _10242821: {
+    name: `V-Gard H2 Safety Helmet - Mips - Vented - Hi-Viz Yellow - 10242821`,
+    vendor: `MSA`,
+    productCode: `10242821`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242821-V-Gard-H2-Mips-Hi-Viz Yellow-Vented-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242821-V-Gard-H2-Mips-Hi-Viz Yellow-Vented-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242821-V-Gard-H2-Mips-Hi-Viz Yellow-Vented-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242821-V-Gard-H2-Mips-Hi-Viz Yellow-Vented-RS.png`
+  },
+  _10242822: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - White - 10242822`,
+    vendor: `MSA`,
+    productCode: `10242822`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242822-V-Gard-H2-Mips-White-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242822-V-Gard-H2-Mips-White-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242822-V-Gard-H2-Mips-White-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242822-V-Gard-H2-Mips-White-Novent-RS.png`
+  },
+  _10242823: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - Black - 10242823`,
+    vendor: `MSA`,
+    productCode: `10242823`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242823-V-Gard-H2-Mips-Black-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242823-V-Gard-H2-Mips-Black-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242823-V-Gard-H2-Mips-Black-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242823-V-Gard-H2-Mips-Black-Novent-RS.png`
+  },
+  _10242824: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - Yellow - 10242824`,
+    vendor: `MSA`,
+    productCode: `10242824`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242824-V-Gard-H2-Mips-Yellow-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242824-V-Gard-H2-Mips-Yellow-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242824-V-Gard-H2-Mips-Yellow-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242824-V-Gard-H2-Mips-Yellow-Novent-RS.png`
+  },
+  _10242825: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - Blue - 10242825`,
+    vendor: `MSA`,
+    productCode: `10242825`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242825-V-Gard-H2-Mips-Blue-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242825-V-Gard-H2-Mips-Blue-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242825-V-Gard-H2-Mips-Blue-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242825-V-Gard-H2-Mips-Blue-Novent-RS.png`
+  },
+  _10242826: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - Gray - 10242826`,
+    vendor: `MSA`,
+    productCode: `10242826`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242826-V-Gard-H2-Mips-Grey-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242826-V-Gard-H2-Mips-Grey-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242826-V-Gard-H2-Mips-Grey-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242826-V-Gard-H2-Mips-Grey-Novent-RS.png`
+  },
+  _10242827: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - Orange - 10242827`,
+    vendor: `MSA`,
+    productCode: `10242827`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242827-V-Gard-H2-Mips-Orange-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242827-V-Gard-H2-Mips-Orange-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242827-V-Gard-H2-Mips-Orange-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242827-V-Gard-H2-Mips-Orange-Novent-RS.png`
+  },
+  _10242828: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - Red - 10242828`,
+    vendor: `MSA`,
+    productCode: `10242828`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242828-V-Gard-H2-Mips-Red-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242828-V-Gard-H2-Mips-Red-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242828-V-Gard-H2-Mips-Red-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242828-V-Gard-H2-Mips-Red-Novent-RS.png`
+  },
+  _10242829: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - Green - 10242829`,
+    vendor: `MSA`,
+    productCode: `10242829`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242829-V-Gard-H2-Mips-Green-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242829-V-Gard-H2-Mips-Green-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242829-V-Gard-H2-Mips-Green-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242829-V-Gard-H2-Mips-Green-Novent-RS.png`
+  },
+  _10242830: {
+    name: `V-Gard H2 Safety Helmet - Mips - Non-Vented - Hi-Viz Yellow - 10242830`,
+    vendor: `MSA`,
+    productCode: `10242830`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242830-V-Gard-H2-Mips-Hi-Viz Yellow-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242830-V-Gard-H2-Mips-Hi-Viz Yellow-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242830-V-Gard-H2-Mips-Hi-Viz Yellow-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10242830-V-Gard-H2-Mips-Hi-Viz Yellow-Novent-RS.png`
+  },
+  _10250581: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - White - 10250581`,
+    vendor: `MSA`,
+    productCode: `10250581`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250581-V-Gard-H2-Fl-Brm-White-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250581-V-Gard-H2-Fl-Brm-White-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250581-V-Gard-H2-Fl-Brm-White-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250581-V-Gard-H2-Fl-Brm-White-Vent-RS.png`
+  },
+  _10250582: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Black - 10250582`,
+    vendor: `MSA`,
+    productCode: `10250582`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250582-V-Gard-H2-Fl-Brm-Black-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250582-V-Gard-H2-Fl-Brm-Black-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250582-V-Gard-H2-Fl-Brm-Black-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250582-V-Gard-H2-Fl-Brm-Black-Vent-RS.png`
+  },
+  _10250583: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Yellow - 10250583`,
+    vendor: `MSA`,
+    productCode: `10250583`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250583-V-Gard-H2-Fl-Brm-Yellow-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250583-V-Gard-H2-Fl-Brm-Yellow-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250583-V-Gard-H2-Fl-Brm-Yellow-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250583-V-Gard-H2-Fl-Brm-Yellow-Vent-RS.png`
+  },
+  _10250584: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Blue - 10250584`,
+    vendor: `MSA`,
+    productCode: `10250584`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250584-V-Gard-H2-Fl-Brm-Blue-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250584-V-Gard-H2-Fl-Brm-Blue-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250584-V-Gard-H2-Fl-Brm-Blue-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250584-V-Gard-H2-Fl-Brm-Blue-Vent-RS.png`
+  },
+  _10250585: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Gray - 10250585`,
+    vendor: `MSA`,
+    productCode: `10250585`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250585-V-Gard-H2-Fl-Brm-Grey-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250585-V-Gard-H2-Fl-Brm-Grey-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250585-V-Gard-H2-Fl-Brm-Grey-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250585-V-Gard-H2-Fl-Brm-Grey-Vent-RS.png`
+  },
+  _10250586: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Orange - 10250586`,
+    vendor: `MSA`,
+    productCode: `10250586`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250586-V-Gard-H2-Fl-Brm-Orange-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250586-V-Gard-H2-Fl-Brm-Orange-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250586-V-Gard-H2-Fl-Brm-Orange-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250586-V-Gard-H2-Fl-Brm-Orange-Vent-RS.png`
+  },
+  _10250587: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Red - 10250587`,
+    vendor: `MSA`,
+    productCode: `10250587`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250587-V-Gard-H2-Fl-Brm-Red-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250587-V-Gard-H2-Fl-Brm-Red-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250587-V-Gard-H2-Fl-Brm-Red-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250587-V-Gard-H2-Fl-Brm-Red-Vent-RS.png`
+  },
+  _10250588: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Green - 10250588`,
+    vendor: `MSA`,
+    productCode: `10250588`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250588-V-Gard-H2-Fl-Brm-Green-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250588-V-Gard-H2-Fl-Brm-Green-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250588-V-Gard-H2-Fl-Brm-Green-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250588-V-Gard-H2-Fl-Brm-Green-Vent-RS.png`
+  },
+  _10250589: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Hi-Viz Orange - 10250589`,
+    vendor: `MSA`,
+    productCode: `10250589`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250589-V-Gard-H2-Fl-Brm-Hi-Vis-Orange-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250589-V-Gard-H2-Fl-Brm-Hi-Vis-Orange-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250589-V-Gard-H2-Fl-Brm-Hi-Vis-Orange-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250589-V-Gard-H2-Fl-Brm-Hi-Vis-Orange-Vent-RS.png`
+  },
+  _10250590: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Vented - Hi-Viz Yellow - 10250590`,
+    vendor: `MSA`,
+    productCode: `10250590`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250590-V-Gard-H2-Fl-Brm-Hi-Viz-Yellow-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250590-V-Gard-H2-Fl-Brm-Hi-Viz-Yellow-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250590-V-Gard-H2-Fl-Brm-Hi-Viz-Yellow-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250590-V-Gard-H2-Fl-Brm-Hi-Viz-Yellow-Vent-RS.png`
+  },
+  _10250593: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - White - 10250593`,
+    vendor: `MSA`,
+    productCode: `10250593`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250593-V-Gard-H2-Fl-Brm-White-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250593-V-Gard-H2-Fl-Brm-White-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250593-V-Gard-H2-Fl-Brm-White-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250593-V-Gard-H2-Fl-Brm-White-Novent-RS.png`
+  },
+  _10250594: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Black - 10250594`,
+    vendor: `MSA`,
+    productCode: `10250594`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250594-V-Gard-H2-Fl-Brm-Black-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250594-V-Gard-H2-Fl-Brm-Black-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250594-V-Gard-H2-Fl-Brm-Black-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250594-V-Gard-H2-Fl-Brm-Black-Novent-RS.png`
+  },
+  _10250595: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Yellow - 10250595`,
+    vendor: `MSA`,
+    productCode: `10250595`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250595-V-Gard-H2-Fl-Brm-Yellow-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250595-V-Gard-H2-Fl-Brm-Yellow-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250595-V-Gard-H2-Fl-Brm-Yellow-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250595-V-Gard-H2-Fl-Brm-Yellow-Novent-RS.png`
+  },
+  _10250596: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Blue - 10250596`,
+    vendor: `MSA`,
+    productCode: `10250596`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250596-V-Gard-H2-Fl-Brm-Blue-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250596-V-Gard-H2-Fl-Brm-Blue-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250596-V-Gard-H2-Fl-Brm-Blue-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250596-V-Gard-H2-Fl-Brm-Blue-Novent-RS.png`
+  },
+  _10250597: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Gray - 10250597`,
+    vendor: `MSA`,
+    productCode: `10250597`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250597-V-Gard-H2-Fl-Brm-Grey-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250597-V-Gard-H2-Fl-Brm-Grey-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250597-V-Gard-H2-Fl-Brm-Grey-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250597-V-Gard-H2-Fl-Brm-Grey-Novent-RS.png`
+  },
+  _10250598: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Orange - 10250598`,
+    vendor: `MSA`,
+    productCode: `10250598`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250598-V-Gard-H2-Fl-Brm-Orange-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250598-V-Gard-H2-Fl-Brm-Orange-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250598-V-Gard-H2-Fl-Brm-Orange-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250598-V-Gard-H2-Fl-Brm-Orange-Novent-RS.png`
+  },
+  _10250599: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Red - 10250599`,
+    vendor: `MSA`,
+    productCode: `10250599`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250599-V-Gard-H2-Fl-Brm-Red-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250599-V-Gard-H2-Fl-Brm-Red-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250599-V-Gard-H2-Fl-Brm-Red-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250599-V-Gard-H2-Fl-Brm-Red-Novent-RS.png`
+  },
+  _10250600: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Green - 10250600`,
+    vendor: `MSA`,
+    productCode: `10250600`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250600-V-Gard-H2-Fl-Brm-Green-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250600-V-Gard-H2-Fl-Brm-Green-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250600-V-Gard-H2-Fl-Brm-Green-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250600-V-Gard-H2-Fl-Brm-Green-Novent-RS.png`
+  },
+  _10250601: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Hi-Viz Orange - 10250601`,
+    vendor: `MSA`,
+    productCode: `10250601`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250601-V-Gard-H2-Fl-Brm-Hi-Vis-Orange-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250601-V-Gard-H2-Fl-Brm-Hi-Vis-Orange-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250601-V-Gard-H2-Fl-Brm-Hi-Vis-Orange-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250601-V-Gard-H2-Fl-Brm-Hi-Vis-Orange-Novent-RS.png`
+  },
+  _10250602: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Non-Vented - Hi-Viz Yellow - 10250602`,
+    vendor: `MSA`,
+    productCode: `10250602`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250602-V-Gard-H2-Fl-Brm-Hi-Viz-Yellow-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250602-V-Gard-H2-Fl-Brm-Hi-Viz-Yellow-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250602-V-Gard-H2-Fl-Brm-Hi-Viz-Yellow-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250602-V-Gard-H2-Fl-Brm-Hi-Viz-Yellow-Novent-RS.png`
+  },
+  _10250605: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - White - 10250605`,
+    vendor: `MSA`,
+    productCode: `10250605`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250605-V-Gard-H2-Fl-Brm-Mips-White-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250605-V-Gard-H2-Fl-Brm-Mips-White-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250605-V-Gard-H2-Fl-Brm-Mips-White-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250605-V-Gard-H2-Fl-Brm-Mips-White-Vent-RS.png`
+  },
+  _10250606: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Black - 10250606`,
+    vendor: `MSA`,
+    productCode: `10250606`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250606-V-Gard-H2-Fl-Brm-Mips-Black-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250606-V-Gard-H2-Fl-Brm-Mips-Black-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250606-V-Gard-H2-Fl-Brm-Mips-Black-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250606-V-Gard-H2-Fl-Brm-Mips-Black-Vent-RS.png`
+  },
+  _10250607: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Yellow - 10250607`,
+    vendor: `MSA`,
+    productCode: `10250607`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250607-V-Gard-H2-Fl-Brm-Mips-Yellow-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250607-V-Gard-H2-Fl-Brm-Mips-Yellow-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250607-V-Gard-H2-Fl-Brm-Mips-Yellow-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250607-V-Gard-H2-Fl-Brm-Mips-Yellow-Vent-RS.png`
+  },
+  _10250608: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Blue - 10250608`,
+    vendor: `MSA`,
+    productCode: `10250608`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250608-V-Gard-H2-Fl-Brm-Mips-Blue-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250608-V-Gard-H2-Fl-Brm-Mips-Blue-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250608-V-Gard-H2-Fl-Brm-Mips-Blue-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250608-V-Gard-H2-Fl-Brm-Mips-Blue-Vent-RS.png`
+  },
+  _10250609: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Gray - 10250609`,
+    vendor: `MSA`,
+    productCode: `10250609`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250609-V-Gard-H2-Fl-Brm-Mips-Grey-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250609-V-Gard-H2-Fl-Brm-Mips-Grey-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250609-V-Gard-H2-Fl-Brm-Mips-Grey-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250609-V-Gard-H2-Fl-Brm-Mips-Grey-Vent-RS.png`
+  },
+  _10250610: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Orange - 10250610`,
+    vendor: `MSA`,
+    productCode: `10250610`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250610-V-Gard-H2-Fl-Brm-Mips-Orange-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250610-V-Gard-H2-Fl-Brm-Mips-Orange-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250610-V-Gard-H2-Fl-Brm-Mips-Orange-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250610-V-Gard-H2-Fl-Brm-Mips-Orange-Vent-RS.png`
+  },
+  _10250611: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Red - 10250611`,
+    vendor: `MSA`,
+    productCode: `10250611`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250611-V-Gard-H2-Fl-Brm-Mips-Red-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250611-V-Gard-H2-Fl-Brm-Mips-Red-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250611-V-Gard-H2-Fl-Brm-Mips-Red-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250611-V-Gard-H2-Fl-Brm-Mips-Red-Vent-RS.png`
+  },
+  _10250612: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Green - 10250612`,
+    vendor: `MSA`,
+    productCode: `10250612`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250612-V-Gard-H2-Fl-Brm-Mips-Green-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250612-V-Gard-H2-Fl-Brm-Mips-Green-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250612-V-Gard-H2-Fl-Brm-Mips-Green-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250612-V-Gard-H2-Fl-Brm-Mips-Green-Vent-RS.png`
+  },
+  _10250613: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Hi-Viz Orange - 10250613`,
+    vendor: `MSA`,
+    productCode: `10250613`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250613-V-Gard-H2-Fl-Brm-Mips-Hi-Vis-Orange-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250613-V-Gard-H2-Fl-Brm-Mips-Hi-Vis-Orange-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250613-V-Gard-H2-Fl-Brm-Mips-Hi-Vis-Orange-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250613-V-Gard-H2-Fl-Brm-Mips-Hi-Vis-Orange-Vent-RS.png`
+  },
+  _10250614: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Vented - Hi-Viz Yellow - 10250614`,
+    vendor: `MSA`,
+    productCode: `10250614`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250614-V-Gard-H2-Fl-Brm-Mips-Hi-Viz-Yellow-Vent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250614-V-Gard-H2-Fl-Brm-Mips-Hi-Viz-Yellow-Vent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250614-V-Gard-H2-Fl-Brm-Mips-Hi-Viz-Yellow-Vent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250614-V-Gard-H2-Fl-Brm-Mips-Hi-Viz-Yellow-Vent-RS.png`
+  },
+  _10250617: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - White - 10250617`,
+    vendor: `MSA`,
+    productCode: `10250617`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250617-V-Gard-H2-Fl-Brm-Mips-White-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250617-V-Gard-H2-Fl-Brm-Mips-White-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250617-V-Gard-H2-Fl-Brm-Mips-White-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250617-V-Gard-H2-Fl-Brm-Mips-White-Novent-RS.png`
+  },
+  _10250618: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Black - 10250618`,
+    vendor: `MSA`,
+    productCode: `10250618`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250618-V-Gard-H2-Fl-Brm-Mips-Black-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250618-V-Gard-H2-Fl-Brm-Mips-Black-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250618-V-Gard-H2-Fl-Brm-Mips-Black-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250618-V-Gard-H2-Fl-Brm-Mips-Black-Novent-RS.png`
+  },
+  _10250619: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Yellow - 10250619`,
+    vendor: `MSA`,
+    productCode: `10250619`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250619-V-Gard-H2-Fl-Brm-Mips-Yellow-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250619-V-Gard-H2-Fl-Brm-Mips-Yellow-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250619-V-Gard-H2-Fl-Brm-Mips-Yellow-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250619-V-Gard-H2-Fl-Brm-Mips-Yellow-Novent-RS.png`
+  },
+  _10250620: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Blue - 10250620`,
+    vendor: `MSA`,
+    productCode: `10250620`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250620-V-Gard-H2-Fl-Brm-Mips-Blue-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250620-V-Gard-H2-Fl-Brm-Mips-Blue-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250620-V-Gard-H2-Fl-Brm-Mips-Blue-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250620-V-Gard-H2-Fl-Brm-Mips-Blue-Novent-RS.png`
+  },
+  _10250621: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Gray - 10250621`,
+    vendor: `MSA`,
+    productCode: `10250621`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250621-V-Gard-H2-Fl-Brm-Mips-Grey-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250621-V-Gard-H2-Fl-Brm-Mips-Grey-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250621-V-Gard-H2-Fl-Brm-Mips-Grey-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250621-V-Gard-H2-Fl-Brm-Mips-Grey-Novent-RS.png`
+  },
+  _10250622: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Orange - 10250622`,
+    vendor: `MSA`,
+    productCode: `10250622`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250622-V-Gard-H2-Fl-Brm-Mips-Orange-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250622-V-Gard-H2-Fl-Brm-Mips-Orange-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250622-V-Gard-H2-Fl-Brm-Mips-Orange-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250622-V-Gard-H2-Fl-Brm-Mips-Orange-Novent-RS.png`
+  },
+  _10250623: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Red - 10250623`,
+    vendor: `MSA`,
+    productCode: `10250623`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250623-V-Gard-H2-Fl-Brm-Mips-Red-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250623-V-Gard-H2-Fl-Brm-Mips-Red-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250623-V-Gard-H2-Fl-Brm-Mips-Red-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250623-V-Gard-H2-Fl-Brm-Mips-Red-Novent-RS.png`
+  },
+  _10250624: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Green - 10250624`,
+    vendor: `MSA`,
+    productCode: `10250624`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250624-V-Gard-H2-Fl-Brm-Mips-Green-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250624-V-Gard-H2-Fl-Brm-Mips-Green-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250624-V-Gard-H2-Fl-Brm-Mips-Green-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250624-V-Gard-H2-Fl-Brm-Mips-Green-Novent-RS.png`
+  },
+  _10250625: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Hi-Viz Orange - 10250625`,
+    vendor: `MSA`,
+    productCode: `10250625`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250625-V-Gard-H2-Fl-Brm-Mips-Hi-Vis-Orange-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250625-V-Gard-H2-Fl-Brm-Mips-Hi-Vis-Orange-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250625-V-Gard-H2-Fl-Brm-Mips-Hi-Vis-Orange-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250625-V-Gard-H2-Fl-Brm-Mips-Hi-Vis-Orange-Novent-RS.png`
+  },
+  _10250626: {
+    name: `V-Gard H2 Full Brim Safety Helmet - Mips - Non-Vented - Hi-Viz Yellow - 10250626`,
+    vendor: `MSA`,
+    productCode: `10250626`,
+    front: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250626-V-Gard-H2-Fl-Brm-Mips-Hi-Viz-Yellow-Novent-FT.png`,
+    back: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250626-V-Gard-H2-Fl-Brm-Mips-Hi-Viz-Yellow-Novent-BK.png`,
+    left: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250626-V-Gard-H2-Fl-Brm-Mips-Hi-Viz-Yellow-Novent-LS.png`,
+    right: `https://store-ap39xxpmw2.mybigcommerce.com/product_images/H2/10250626-V-Gard-H2-Fl-Brm-Mips-Hi-Viz-Yellow-Novent-RS.png`
+  },
+  shk_1_fb_ecf: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Carbon`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_ecf`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Carbon_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Carbon_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Carbon_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Carbon_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cfm: {
+    name: `Studson SHK-1 Full Brim Vented - FiberMetal`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cfm`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_FiberMetal_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_FiberMetal_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_FiberMetal_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_FiberMetal_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_efm: {
+    name: `Studson SHK-1 Full Brim Non-Vented - FiberMetal`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_efm`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_FiberMetal_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_FiberMetal_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_FiberMetal_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_FiberMetal_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cfg: {
+    name: `Studson SHK-1 Full Brim Vented - Forest Green`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cfg`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Forest Green_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Forest Green_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Forest Green_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Forest Green_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_efg: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Forest Green`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_efg`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Forest Green_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Forest Green_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Forest Green_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Forest Green_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cgl: {
+    name: `Studson SHK-1 Full Brim Vented - Gold`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cgl`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Gold_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Gold_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Gold_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Gold_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_egl: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Gold`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_egl`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Gold_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Gold_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Gold_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Gold_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cgr: {
+    name: `Studson SHK-1 Full Brim Vented - Green`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cgr`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Green_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Green_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Green_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Green_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_egr: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Green`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_egr`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Green_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Green_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Green_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Green_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cg: {
+    name: `Studson SHK-1 Full Brim Vented - Grey`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cg`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Grey_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Grey_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Grey_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Grey_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_eg: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Grey`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_eg`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Grey_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Grey_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Grey_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Grey_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_chy: {
+    name: `Studson SHK-1 Full Brim Vented - HiVis Yellow`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_chy`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_HiVis Yellow_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_HiVis Yellow_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_HiVis Yellow_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_HiVis Yellow_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_ehy: {
+    name: `Studson SHK-1 Full Brim Non-Vented - HiVis Yellow`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_ehy`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_HiVis Yellow_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_HiVis Yellow_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_HiVis Yellow_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_HiVis Yellow_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_ck: {
+    name: `Studson SHK-1 Full Brim Vented - Khaki`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_ck`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Khaki_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Khaki_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Khaki_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Khaki_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_ek: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Khaki`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_ek`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Khaki_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Khaki_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Khaki_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Khaki_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cb: {
+    name: `Studson SHK-1 Full Brim Vented - Navy Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Navy Blue_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Navy Blue_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Navy Blue_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Navy Blue_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_eb: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Navy Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_eb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Navy Blue_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Navy Blue_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Navy Blue_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Navy Blue_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_co: {
+    name: `Studson SHK-1 Full Brim Vented - Orange`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_co`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Orange_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Orange_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Orange_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Orange_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_eo: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Orange`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_eo`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Orange_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Orange_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Orange_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Orange_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cpb: {
+    name: `Studson SHK-1 Full Brim Vented - Performance Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cpb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Performance Blue_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Performance Blue_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Performance Blue_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Performance Blue_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_epb: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Performance Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_epb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Performance Blue_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Performance Blue_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Performance Blue_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Performance Blue_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cp: {
+    name: `Studson SHK-1 Full Brim Vented - Pink`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cp`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Pink_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Pink_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Pink_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Pink_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cr: {
+    name: `Studson SHK-1 Full Brim Vented - Red`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cr`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Red_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Red_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Red_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Red_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_er: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Red`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_er`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Red_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Red_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Red_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Red_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_erb: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Royal Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_erb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Royal Blue_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Royal Blue_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Royal Blue_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Royal Blue_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_ct: {
+    name: `Studson SHK-1 Full Brim Vented - Teal`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_ct`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Teal_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Teal_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Teal_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Teal_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_et: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Teal`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_et`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Teal_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Teal_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Teal_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Teal_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cwcf: {
+    name: `Studson SHK-1 Full Brim Vented - White Carbon`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cwcf`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White Carbon_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White Carbon_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White Carbon_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White Carbon_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_ewcf: {
+    name: `Studson SHK-1 Full Brim Non-Vented - White Carbon`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_ewcf`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White Carbon_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White Carbon_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White Carbon_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White Carbon_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cw: {
+    name: `Studson SHK-1 Full Brim Vented - White`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cw`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_ew: {
+    name: `Studson SHK-1 Full Brim Non-Vented - White`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_ew`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_White_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_cy: {
+    name: `Studson SHK-1 Full Brim Vented - Yellow`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_cy`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Yellow_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Yellow_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Yellow_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Yellow_Vented_Right (Custom).jpg`
+  },
+  shk_1_fb_ey: {
+    name: `Studson SHK-1 Full Brim Non-Vented - Yellow`,
+    vendor: `Studson`,
+    productCode: `shk_1_fb_ey`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Yellow_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Yellow_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Yellow_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/FullBrim_Yellow_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cbk: {
+    name: `Studson SHK-1 Helmet Vented - Black`,
+    vendor: `Studson`,
+    productCode: `shk_1_cbk`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Black_Vented_Front%20%28Custom%29.jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Black_Vented_rear%20%281%29%20%28Custom%29.jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Black_Vented_Left%20%28Custom%29.jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Black_Vented_Right%20%28Custom%29.jpg`
+  },
+  shk_1_ebk: {
+    name: `Studson SHK-1 Helmet Non-Vented - Black`,
+    vendor: `Studson`,
+    productCode: `shk_1_ebk`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Black_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Black_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Black_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Black_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cfm: {
+    name: `Studson SHK-1 Helmet Vented - FiberMetal`,
+    vendor: `Studson`,
+    productCode: `shk_1_cfm`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_FiberMetal_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_FiberMetal_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_FiberMetal_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_FiberMetal_Vented_Right (Custom).jpg`
+  },
+  shk_1_efm: {
+    name: `Studson SHK-1 Helmet Non-Vented - FiberMetal`,
+    vendor: `Studson`,
+    productCode: `shk_1_efm`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_FiberMetal_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_FiberMetal_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_FiberMetal_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_FiberMetal_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_egl: {
+    name: `Studson SHK-1 Helmet Non-Vented - Gold`,
+    vendor: `Studson`,
+    productCode: `shk_1_egl`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Gold_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Gold_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Gold_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Gold_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cgr: {
+    name: `Studson SHK-1 Helmet Vented - Green`,
+    vendor: `Studson`,
+    productCode: `shk_1_cgr`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Green_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Green_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Green_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Green_Vented_Right (Custom).jpg`
+  },
+  shk_1_egr: {
+    name: `Studson SHK-1 Helmet Non-Vented - Green`,
+    vendor: `Studson`,
+    productCode: `shk_1_egr`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Green_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Green_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Green_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Green_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cg: {
+    name: `Studson SHK-1 Helmet Vented - Grey`,
+    vendor: `Studson`,
+    productCode: `shk_1_cg`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Grey_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Grey_Vented_Rear copy (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Grey_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Grey_Vented_Right (Custom).jpg`
+  },
+  shk_1_eg: {
+    name: `Studson SHK-1 Helmet Non-Vented - Grey`,
+    vendor: `Studson`,
+    productCode: `shk_1_eg`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Grey_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Grey_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Grey_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Grey_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_chy: {
+    name: `Studson SHK-1 Helmet Vented - HiVis Yellow`,
+    vendor: `Studson`,
+    productCode: `shk_1_chy`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis%20Yellow_Non-Vented_Front%20%28Custom%29.jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis Yellow_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis Yellow_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis Yellow_Vented_Right (Custom).jpg`
+  },
+  shk_1_ehy: {
+    name: `Studson SHK-1 Helmet Non-Vented - HiVis Yellow`,
+    vendor: `Studson`,
+    productCode: `shk_1_ehy`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis Yellow_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis Yellow_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis Yellow_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis Yellow_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_eb: {
+    name: `Studson SHK-1 Helmet Non-Vented - Navy Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_eb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Navy Blue_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Navy Blue_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Navy Blue_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Navy Blue_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_co: {
+    name: `Studson SHK-1 Helmet Vented - Orange`,
+    vendor: `Studson`,
+    productCode: `shk_1_co`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Orange_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Orange_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Orange_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Orange_Vented_Right (Custom).jpg`
+  },
+  shk_1_eo: {
+    name: `Studson SHK-1 Helmet Non-Vented - Orange`,
+    vendor: `Studson`,
+    productCode: `shk_1_eo`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Orange_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Orange_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Orange_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Orange_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cp: {
+    name: `Studson SHK-1 Helmet Vented - Pink`,
+    vendor: `Studson`,
+    productCode: `shk_1_cp`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Pink_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Pink_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Pink_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Pink_Vented_Right (Custom).jpg`
+  },
+  shk_1_ep: {
+    name: `Studson SHK-1 Helmet Non-Vented - Pink`,
+    vendor: `Studson`,
+    productCode: `shk_1_ep`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Pink_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Pink_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Pink_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Pink_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cr: {
+    name: `Studson SHK-1 Helmet Vented - Red`,
+    vendor: `Studson`,
+    productCode: `shk_1_cr`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Red_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Red_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Red_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Red_Vented_Right (Custom).jpg`
+  },
+  shk_1_er: {
+    name: `Studson SHK-1 Helmet Non-Vented - Red`,
+    vendor: `Studson`,
+    productCode: `shk_1_er`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Red_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Red_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Red_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Red_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_crb: {
+    name: `Studson SHK-1 Helmet Vented - Royal Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_crb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Royal Blue_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Royal Blue_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Royal Blue_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Royal Blue_Vented_Right (Custom).jpg`
+  },
+  shk_1_erb: {
+    name: `Studson SHK-1 Helmet Non-Vented - Royal Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_erb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Royal Blue_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Royal Blue_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Royal Blue_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Royal Blue_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_ct: {
+    name: `Studson SHK-1 Helmet Vented - Teal`,
+    vendor: `Studson`,
+    productCode: `shk_1_ct`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Teal_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Teal_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Teal_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Teal_Vented_Right (Custom).jpg`
+  },
+  shk_1_et: {
+    name: `Studson SHK-1 Helmet Non-Vented - Teal`,
+    vendor: `Studson`,
+    productCode: `shk_1_et`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Teal_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Teal_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Teal_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Teal_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cwcf: {
+    name: `Studson SHK-1 Helmet Vented - White Carbon`,
+    vendor: `Studson`,
+    productCode: `shk_1_cwcf`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White Carbon_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White Carbon_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White Carbon_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White Carbon_Vented_Right (Custom).jpg`
+  },
+  shk_1_ewcf: {
+    name: `Studson SHK-1 Helmet Non-Vented - White Carbon`,
+    vendor: `Studson`,
+    productCode: `shk_1_ewcf`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White Carbon_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White Carbon_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White Carbon_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White Carbon_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cw: {
+    name: `Studson SHK-1 Helmet Vented - White`,
+    vendor: `Studson`,
+    productCode: `shk_1_cw`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White_Vented_Right (Custom).jpg`
+  },
+  shk_1_ew: {
+    name: `Studson SHK-1 Helmet Non-Vented - White`,
+    vendor: `Studson`,
+    productCode: `shk_1_ew`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White_Non-Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_White_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cy: {
+    name: `Studson SHK-1 Helmet Vented - Yellow`,
+    vendor: `Studson`,
+    productCode: `shk_1_cy`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Yellow_Vented_Front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Yellow_Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Yellow_Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Yellow_Vented_Right (Custom).jpg`
+  },
+  shk_1_ey: {
+    name: `Studson SHK-1 Helmet Non-Vented - Yellow`,
+    vendor: `Studson`,
+    productCode: `shk_1_ey`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_HiVis%20Yellow_Non-Vented_Front%20%28Custom%29.jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Yellow_Non-Vented_Rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Yellow_Non-Vented_Left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Yellow_Non-Vented_Right (Custom).jpg`
+  },
+  shk_1_cb: {
+    name: `Studson SHK-1 Helmet Vented - Blue`,
+    vendor: `Studson`,
+    productCode: `shk_1_cb`,
+    front: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Blue_Vented_front (Custom).jpg`,
+    back: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Blue_Vented_rear (Custom).jpg`,
+    left: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Blue_Vented_left (Custom).jpg`,
+    right: `https://store-8715e.mybigcommerce.com/product_images/helmets2/StandardBrim_Blue_Vented_right (Custom).jpg`
+  }
+};
+
+
+
+  /* -----------------
+   * Utilities / DOM
+   * ----------------- */
+  function loadImage(url){
+    return new Promise((res,rej)=>{
+      if(!url){ res(null); return; }
+      const i=new Image(); i.crossOrigin='anonymous';
+      i.onload=()=>res(i); i.onerror=()=>rej(new Error('load '+url)); i.src=url;
+    });
+  }
+  function fileToDataURL(file){
+    return new Promise((res,rej)=>{ const fr=new FileReader(); fr.onload=()=>res(fr.result); fr.onerror=rej; fr.readAsDataURL(file); });
+  }
+function calculateDPI(imageWidth, imageHeight, printWidthInches, printHeightInches) {
+  const dpiX = imageWidth / printWidthInches;
+  const dpiY = imageHeight / printHeightInches;
+  return Math.min(dpiX, dpiY); // Use the lower DPI (worst case)
+}
+
+function getDPIQuality(dpi) {
+  if (dpi >= 300) return { level: 'Good', color: '#10b981', bg: '#d1fae5' }; // Green
+  if (dpi >= 150) return { level: 'OK', color: '#f59e0b', bg: '#fef3c7' };   // Amber
+  return { level: 'Bad', color: '#ef4444', bg: '#fee2e2' };                  // Red
+}
+
+  /* -------------
+   * Side manager
+   * ------------- */
+
+class Side {
+    constructor(opts){
+      this.id=opts.id;
+      this.mountId=opts.mountId;
+      this.selBadge=document.getElementById(opts.selBadgeId);
+      this.dpiBadge=document.getElementById(opts.dpiBadgeId);
+      this.deleteBtn=document.getElementById(opts.deleteBtnId);
+      this.uploadInp=document.getElementById(opts.uploadId);
+
+      const mount=document.getElementById(this.mountId);
+      const W=Math.min(560,(mount.clientWidth||560));
+      this.stage=new Konva.Stage({container:this.mountId,width:W,height:W});
+      this.layerBg=new Konva.Layer();
+      this.layerArt=new Konva.Layer();
+      this.layerUI=new Konva.Layer();
+      this.stage.add(this.layerBg,this.layerArt,this.layerUI);
+
+      this.tr=new Konva.Transformer({
+        nodes:[], rotateEnabled:true,
+        enabledAnchors:['top-left','top-right','bottom-left','bottom-right'],
+        boundBoxFunc:(oldB,newB)=>{const MIN=20;return (newB.width<MIN||newB.height<MIN)?oldB:newB;}
+      });
+      this.layerUI.add(this.tr);
+
+      this.bounds={x:0,y:0,w:W,h:W};
+      this.baseNode=null;
+      this.printAreaRect=null;
+
+      // selection
+      this.stage.on('click', e=>{
+        if (e.target===this.stage || e.target===this.baseNode){ this.setSelected(null); return; }
+        const n=e.target.findAncestor('.draggableItem', true);
+        if(n) this.setSelected(n);
+      });
+
+      // upload
+      this.uploadInp.addEventListener('change', async (e)=>{
+        try{
+          const f=e.target.files && e.target.files[0]; if(!f) return;
+          const dataURL=await fileToDataURL(f);
+          const img=await loadImage(dataURL);
+          const iw=img.naturalWidth||img.width, ih=img.naturalHeight||img.height;
+          const maxW=this.bounds.w*0.6, maxH=this.bounds.h*0.6;
+          const scale=Math.min(maxW/iw, maxH/ih, 1);
+
+          const targetBounds = this.printBounds || this.bounds;
+          const node=new Konva.Image({
+            image:img,
+            x: targetBounds.x + (targetBounds.w - iw*scale)/2,
+            y: targetBounds.y + (targetBounds.h - ih*scale)/2,
+            width:iw*scale, height:ih*scale,
+            draggable:true, name:'draggableItem', label:f.name
+          });
+          node.on('dragmove', ()=> this.clamp(node));
+          node.on('transform', ()=> this.clamp(node));
+
+          this.layerArt.add(node); 
+          this.layerArt.draw();
+          this.setSelected(node);
+
+          const printBounds = this.printBounds || this.bounds;
+          const printWidthInches = (printBounds.w / this.stage.width()) * 6;
+          const printHeightInches = (printBounds.h / this.stage.height()) * 6;
+          const dpi = calculateDPI(iw, ih, printWidthInches, printHeightInches);
+          this.updateDPIDisplay(dpi);
+
+          window.lastUpload={side:this,node};
+          e.target.value='';
+        }catch(err){ alert('Upload failed: '+(err?.message||err)); }
+      });
+
+      // delete
+      this.deleteBtn.addEventListener('click', ()=>{
+        const sel=this.tr.nodes()[0]; if(!sel) return;
+        sel.destroy(); this.tr.nodes([]); this.layerArt.draw(); this.layerUI.draw();
+        this.selBadge.textContent='File: None';
+        this.hideDPIDisplay();
+      });
+    }
+
+    drawPrintArea() {
+      if (this.printAreaRect) {
+        this.printAreaRect.destroy();
+      }
+      
+      const config = PRINT_AREA_CONFIG[this.id];
+      if (!config) return;
+      
+      const b = this.bounds;
+      const printX = b.x + (b.w * config.x);
+      const printY = b.y + (b.h * config.y);
+      const printW = b.w * config.width;
+      const printH = b.h * config.height;
+      
+      this.printBounds = {
+        x: printX,
+        y: printY,
+        w: printW,
+        h: printH
+      };
+      
+      this.printAreaRect = new Konva.Rect({
+        x: printX,
+        y: printY,
+        width: printW,
+        height: printH,
+        stroke: '#00ff00',
+        strokeWidth: 2,
+        dash: [10, 5],
+        listening: false,
+        name: 'printArea'
+      });
+      
+      this.layerBg.add(this.printAreaRect);
+      this.layerBg.draw();
+    }
+
+    updateDPIDisplay(dpi) {
+      if (!this.dpiBadge) return;
+      
+      const quality = getDPIQuality(dpi);
+      const dpiRounded = Math.round(dpi);
+      
+      this.dpiBadge.textContent = `DPI: ${dpiRounded} (${quality.level})`;
+      this.dpiBadge.style.display = 'inline-block';
+      this.dpiBadge.style.background = quality.bg;
+      this.dpiBadge.style.color = quality.color;
+      this.dpiBadge.style.fontWeight = '600';
+    }
+
+    hideDPIDisplay() {
+      if (this.dpiBadge) {
+        this.dpiBadge.style.display = 'none';
+      }
+    }
+
+    async setBase(url){
+      const img=url?await loadImage(url):null;
+      if(!img){
+        if(this.baseNode){ this.baseNode.destroy(); this.baseNode=null; this.layerBg.draw(); }
+        this.bounds={x:0,y:0,w:this.stage.width(),h:this.stage.height()};
+        return;
+      }
+      if(!this.baseNode){
+        this.baseNode=new Konva.Image({image:img,listening:false});
+        this.layerBg.add(this.baseNode);
+      }else{
+        this.baseNode.image(img);
+      }
+      const scale=Math.min(this.stage.width()/img.width, this.stage.height()/img.height);
+      const w=img.width*scale, h=img.height*scale;
+      const x=(this.stage.width()-w)/2, y=(this.stage.height()-h)/2;
+      this.baseNode.setAttrs({x,y,width:w,height:h});
+      this.layerBg.draw();
+      this.bounds={x,y,w,h};
+      this.drawPrintArea();
+      this.layerArt.draw();
+    }
+
+    clamp(node){
+      const b = this.printBounds || this.bounds;
+      const r = node.getClientRect({relativeTo: this.stage});
+      let dx = 0, dy = 0;
+      
+      if(r.x < b.x) dx = b.x - r.x;
+      if(r.y < b.y) dy = b.y - r.y;
+      if(r.x + r.width > b.x + b.w) dx = (b.x + b.w) - (r.x + r.width);
+      if(r.y + r.height > b.y + b.h) dy = (b.y + b.h) - (r.y + r.height);
+      
+      node.x(node.x() + dx);
+      node.y(node.y() + dy);
+    }
+
+    setSelected(node){
+      this.tr.nodes(node?[node]:[]);
+      this.layerUI.batchDraw();
+      this.selBadge.textContent=node?`File: ${node.getAttr('label')||node.name()}`:'File: None';
+    }
+
+    selected(){ return this.tr.nodes()[0] || null; }
+
+    receiveClone(konvaNode){
+      const clone=konvaNode.clone({listening:true});
+      this.layerArt.add(clone); this.clamp(clone); this.layerArt.draw(); this.setSelected(clone);
+      window.lastUpload={side:this,node:clone};
+    }
+  }
+
+  // Instantiate 4 sides
+  const front=new Side({id:'front', mountId:'stageFront', selBadgeId:'selFront', dpiBadgeId:'dpiFront', deleteBtnId:'delFront', uploadId:'upFront'});
+const back =new Side({id:'back',  mountId:'stageBack',  selBadgeId:'selBack',  dpiBadgeId:'dpiBack',  deleteBtnId:'delBack',  uploadId:'upBack'});
+const left =new Side({id:'left',  mountId:'stageLeft',  selBadgeId:'selLeft',  dpiBadgeId:'dpiLeft',  deleteBtnId:'delLeft',  uploadId:'upLeft'});
+const right=new Side({id:'right', mountId:'stageRight', selBadgeId:'selRight', dpiBadgeId:'dpiRight', deleteBtnId:'delRight', uploadId:'upRight'});
+
+
+// === CASCADING DROPDOWN FILTERING ===
+const variantSel = document.getElementById('variantSel');
+const vendorSel = document.getElementById('vendor');
+const colorSel = document.getElementById('colorSel');
+
+function extractColor(variantName) {
+  const patterns = [
+    /- (White|Black|Yellow|Blue|Gray|Grey|Orange|Red|Green|Hi-Viz Yellow|Hi-Vis Yellow|Hi-Viz Orange|Hi-Vis Orange|Pink|Teal|Gold|Khaki|Navy Blue|Royal Blue|Forest Green|Performance Blue|Carbon|FiberMetal|White Carbon) -/i,
+    /- (White|Black|Yellow|Blue|Gray|Grey|Orange|Red|Green|Hi-Viz Yellow|Hi-Vis Yellow|Hi-Viz Orange|Hi-Vis Orange|Pink|Teal|Gold|Khaki|Navy Blue|Royal Blue|Forest Green|Performance Blue|Carbon|FiberMetal|White Carbon)$/i
+  ];
+  for (const pattern of patterns) {
+    const match = variantName.match(pattern);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+function removeColor(variantName) {
+  const color = extractColor(variantName);
+  if (!color) return variantName;
+  return variantName.replace(new RegExp(`- ${color}`, 'gi'), '').replace(/\s+-\s+$/, '').trim();
+}
+
+function getUniqueBaseVariants(filteredByVendor) {
+  const baseNames = new Map();
+  filteredByVendor.forEach(([key, v]) => {
+    const baseName = removeColor(v.name);
+    if (!baseNames.has(baseName)) {
+      baseNames.set(baseName, key);
+    }
+  });
+  return Array.from(baseNames.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+}
+
+function getColorsForBaseVariant(selectedVendor, baseVariantName) {
+  const colors = new Set();
+  Object.entries(VARIANTS).forEach(([key, v]) => {
+    if (selectedVendor && selectedVendor !== '' && selectedVendor !== 'Other') {
+      if (v.vendor !== selectedVendor) return;
+    }
+    const baseName = removeColor(v.name);
+    if (baseName === baseVariantName) {
+      const color = extractColor(v.name);
+      if (color) colors.add(color);
+    }
+  });
+  return Array.from(colors).sort();
+}
+
+function updateVariantDropdown(selectedVendor) {
+  const filteredByVendor = Object.entries(VARIANTS).filter(([key, v]) => {
+    if (!selectedVendor || selectedVendor === '') return true;
+    if (selectedVendor === 'Other') return true;
+    return v.vendor === selectedVendor;
+  });
+  
+  const baseVariants = getUniqueBaseVariants(filteredByVendor);
+  
+  variantSel.innerHTML = '<option value="">-- Select Hard Hat --</option>' + 
+    baseVariants.map(([baseName, key]) => `<option value="${baseName}">${baseName}</option>`).join('');
+  
+  variantSel.value = '';
+  colorSel.innerHTML = '<option value="">-- Select Hard Hat First --</option>';
+  colorSel.disabled = true;
+}
+
+function updateColorDropdown(selectedVendor, baseVariantName) {
+  if (!baseVariantName || baseVariantName === '') {
+    colorSel.innerHTML = '<option value="">-- Select Hard Hat First --</option>';
+    colorSel.disabled = true;
+    return;
+  }
+  
+  const colors = getColorsForBaseVariant(selectedVendor, baseVariantName);
+  
+  if (colors.length === 0) {
+    colorSel.innerHTML = '<option value="">-- No colors available --</option>';
+    colorSel.disabled = true;
+    return;
+  }
+  
+  colorSel.innerHTML = '<option value="">-- Select Color --</option>' + 
+    colors.map(c => `<option value="${c}">${c}</option>`).join('');
+  colorSel.disabled = false;
+  colorSel.value = '';
+}
+
+function applyVariantBySelection(selectedVendor, baseVariantName, selectedColor) {
+  if (!baseVariantName || !selectedColor || selectedColor === '') return;
+  
+  const match = Object.entries(VARIANTS).find(([key, v]) => {
+    if (selectedVendor && selectedVendor !== '' && selectedVendor !== 'Other') {
+      if (v.vendor !== selectedVendor) return false;
+    }
+    const baseName = removeColor(v.name);
+    if (baseName !== baseVariantName) return false;
+    const variantColor = extractColor(v.name);
+    if (variantColor !== selectedColor) return false;
+    return true;
+  });
+  
+  if (match) {
+    const [key, variant] = match;
+    applyVariant(key);
+  }
+}
+
+// Event listeners
+vendorSel.addEventListener('change', () => {
+  updateVariantDropdown(vendorSel.value);
+});
+
+variantSel.addEventListener('change', () => {
+  updateColorDropdown(vendorSel.value, variantSel.value);
+});
+
+colorSel.addEventListener('change', () => {
+  applyVariantBySelection(vendorSel.value, variantSel.value, colorSel.value);
+});
+
+// Initialize on page load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    updateVariantDropdown('');
+    colorSel.disabled = true;
+  });
+} else {
+  updateVariantDropdown('');
+  colorSel.disabled = true;
+}
+
+// Apply selected variant (also sync vendor)
+async function applyVariant(key){
+  const v = VARIANTS[key];
+  if (!v) return;
+  try {
+    await Promise.all([
+      front.setBase(v.front),
+      back.setBase(v.back),
+      left.setBase(v.left),
+      right.setBase(v.right)
+    ]);
+
+    // Auto-populate vendor
+    if (v.vendor){
+      vendorSel.value = v.vendor;
+    }
+    
+    // Auto-populate product code
+    if (v.productCode) {
+      document.getElementById('productStyle').value = v.productCode;
+    }
+  } catch(err){
+    alert('Failed to load images: ' + (err?.message || err));
+  }
+}
+
+
+  // Clone helpers
+  function cloneToAll(fromSide){
+    const sel=fromSide.selected(); if(!sel) return;
+    [front,back,left,right].forEach(s=>{ if(s!==fromSide) s.receiveClone(sel); });
+  }
+  document.getElementById('cloneFtoAll').addEventListener('click', ()=> cloneToAll(front));
+  document.getElementById('cloneBtoAll').addEventListener('click', ()=> cloneToAll(back));
+  document.getElementById('cloneLtoAll').addEventListener('click', ()=> cloneToAll(left));
+  document.getElementById('cloneRtoAll').addEventListener('click', ()=> cloneToAll(right));
+
+function getVariantByKey(key){ return VARIANTS[key] || null; }
+
+// Track whether user has edited the field
+const productStyleInput = document.getElementById('productStyle');
+let productStyleDirty = false;
+productStyleInput.addEventListener('input', () => { productStyleDirty = true; });
+
+// Remember which variants we’ve already auto-filled
+const autoFilledVariantKeys = new Set();
+
+function autoFillOncePerVariant(key){
+  if (productStyleDirty) return;                 // user took over
+  if (autoFilledVariantKeys.has(key)) return;    // already auto-filled this one
+  const v = getVariantByKey(key);
+  productStyleInput.value = (v && v.productCode) ? v.productCode : '';
+  autoFilledVariantKeys.add(key);
+}
+
+// Initial pass
+autoFillOncePerVariant(variantSel.value);
+
+  /* ----------------
+   * PDF (2×2 grid, JPG/PNG aware)
+   * ---------------- */
+  const { PDFDocument, rgb, StandardFonts } = PDFLib;
+
+  async function fetchAsArrayBufferSafe(url){
+    try{
+      if(!url) return null;
+      const r=await fetch(url,{mode:'cors'});
+      if(!r.ok) return null;
+      return await r.arrayBuffer();
+    }catch(e){ console.warn('Fetch failed (continuing):', url, e); return null; }
+  }
+  async function embedImageAuto(pdf, ab, url){
+    if(!ab) return null;
+    const isJpg=/\.jpe?g($|\?)/i.test(url||'');
+    return isJpg ? await pdf.embedJpg(ab) : await pdf.embedPng(ab);
+  }
+
+  document.getElementById('downloadProof').addEventListener('click', ()=>{
+    makeProofPDF().catch(err=>{ console.error('PDF generation error:',err); alert('Could not generate PDF. See console for details.'); });
+  });
+
+  async function makeProofPDF(){
+    const key=variantSel.value;
+    const v=VARIANTS[key]||{};
+    const variantName=v.name||'Hard Hat';
+
+    // Artwork-only PNGs from art layers
+    const frontArt=front.layerArt.toDataURL({pixelRatio:2});
+    const backArt =back.layerArt.toDataURL({pixelRatio:2});
+    const leftArt =left.layerArt.toDataURL({pixelRatio:2});
+    const rightArt=right.layerArt.toDataURL({pixelRatio:2});
+
+    // Base images (optional; continue if blocked)
+    const [frontAB,backAB,leftAB,rightAB,logoAB]=await Promise.all([
+      fetchAsArrayBufferSafe(v.front),
+      fetchAsArrayBufferSafe(v.back),
+      fetchAsArrayBufferSafe(v.left),
+      fetchAsArrayBufferSafe(v.right),
+      fetchAsArrayBufferSafe(LOGO_URL)
+    ]);
+
+    const pdf=await PDFDocument.create();
+    const page=pdf.addPage([792,612]); // Landscape Letter
+    const font=await pdf.embedFont(StandardFonts.Helvetica);
+    const pageW=page.getWidth();
+
+    // Header
+    function drawCentered(text,y,size){ const w=font.widthOfTextAtSize(text,size); page.drawText(text,{x:(pageW-w)/2,y,size,font}); }
+    drawCentered('Jendco Safety Supply - Custom Hard Hat Proof',540,14);
+    drawCentered(variantName,520,12);
+    if(logoAB){
+      const logo=await embedImageAuto(pdf,logoAB,LOGO_URL);
+      if(logo){ const lw=110, lh=(logo.height/logo.width)*lw; page.drawImage(logo,{x:60,y:560,width:lw,height:lh}); }
+    }
+
+    // Left details column (unchanged)
+    const getVal=id=> (document.getElementById(id)?.value||'').trim();
+    const selVendor=getVal('vendor');
+    const vendor=(selVendor==='Other')?(getVal('vendorOther')||'Other'):selVendor;
+    const qty=Math.max(0, parseInt(getVal('qty')||'0', 10) || 0);
+    const details={
+      vendor,
+      productStyle:getVal('productStyle'),
+      logoLoc:getVal('logoLoc'),
+      qty,
+      customer:{
+        name:getVal('custName'),
+        contact:getVal('contactName'),
+        email:getVal('custEmail'),
+        phone:getVal('custPhone'),
+        so:getVal('salesOrder'),
+        notes:getVal('custNotes')
+      }
+    };
+
+    const labelColor=rgb(0.2,0.2,0.2);
+    const leftX=60; let y=500; const lineH=14;
+    function drawLabelValue(label,value,x,y,labelWidth=110){ page.drawText(label,{x,y,size:10,color:labelColor,font}); page.drawText((value||'—'),{x:x+labelWidth,y,size:10,font}); }
+    drawLabelValue('Vendor:',details.vendor,leftX,y); y-=lineH;
+    drawLabelValue('Product Style:',details.productStyle,leftX,y); y-=lineH;
+    drawLabelValue('Logo Location:',details.logoLoc,leftX,y); y-=lineH+8;
+    drawLabelValue('Quantity:',String(details.qty||0),leftX,y); y-=lineH+12;
+
+    y -= lineH * 14;  // ⬅️ move down 4 lines first
+page.drawText('Customer Information',{x:leftX,y,size:11,font}); 
+y -= lineH+8;
+    drawLabelValue('Customer Name:',details.customer?.name||'—',leftX,y); y-=lineH;
+    drawLabelValue('Contact Name:',details.customer?.contact||'—',leftX,y); y-=lineH;
+    drawLabelValue('Email:',details.customer?.email||'—',leftX,y); y-=lineH;
+    drawLabelValue('Phone:',details.customer?.phone||'—',leftX,y); y-=lineH;
+    drawLabelValue('Sales Order #:',details.customer?.so||'—',leftX,y); y-=lineH;
+    drawLabelValue('Notes:', details.customer?.notes || '—', leftX, y); y -= lineH;
+
+    // ===== 2×2 GRID of helmet views (Front/Back, Left/Right) =====
+    const LEFT_BLOCK_WIDTH = 260, LEFT_MARGIN = 15, RIGHT_MARGIN = 40, OUTER_GAP = 24, GAP = 16;
+    const gridX   = LEFT_MARGIN + LEFT_BLOCK_WIDTH + OUTER_GAP; // start of the grid area
+    const gridTop = 350;                                       // below header
+    const usableW = pageW - RIGHT_MARGIN - gridX;
+    const usableH = 410;                                       // down to footer
+
+    const COLS = 2, ROWS = 2;
+    const maxW = Math.floor((usableW - (COLS - 1) * GAP) / COLS);
+    const maxH = Math.floor((usableH - (ROWS - 1) * GAP) / ROWS);
+    const card  = Math.min(maxW, maxH, 130); // square tile size cap
+    const cardW = card, cardH = card;
+
+    // Embed base images for each side (if available)
+    const vestFront=await embedImageAuto(pdf,frontAB,v.front);
+    const vestBack =await embedImageAuto(pdf,backAB, v.back);
+    const vestLeft =await embedImageAuto(pdf,leftAB, v.left);
+    const vestRight=await embedImageAuto(pdf,rightAB,v.right);
+
+    async function drawSide(side, vestEmbedded, artDataUrl, xLeft, yTop, label){
+      if(vestEmbedded && side?.bounds && side?.stage){
+        const b=side.bounds;
+        const scale=cardW/side.stage.width();
+        page.drawImage(vestEmbedded,{ x:xLeft+b.x*scale, y:yTop+b.y*scale, width:b.w*scale, height:b.h*scale });
+      }
+      if(artDataUrl){
+        const artBuf=await (await fetch(artDataUrl)).arrayBuffer();
+        const artPng=await pdf.embedPng(artBuf);
+        page.drawImage(artPng,{ x:xLeft, y:yTop, width:cardW, height:cardH });
+      }
+      const w=font.widthOfTextAtSize(label,10);
+      page.drawText(label,{ x:xLeft+(cardW-w)/2, y:yTop-14, size:10, font });
+    }
+
+    // Grid coordinates (PDF y increases upward; subtract to go down a row)
+    const x1 = gridX;
+    const x2 = gridX + cardW + GAP;
+    const y1 = gridTop;
+    const y2 = gridTop - (cardH + GAP);
+
+    // Row 1: Front | Back
+    await drawSide(front, vestFront, frontArt, x1, y1, 'Front');
+    await drawSide(back,  vestBack,  backArt,  x2, y1, 'Back');
+
+    // Row 2: Left | Right
+    await drawSide(left,  vestLeft,  leftArt,  x1, y2, 'Left');
+    await drawSide(right, vestRight, rightArt, x2, y2, 'Right');
+
+// ---- Right-side column of logo previews (Front, Back, Left, Right) ----
+
+// ---- Right-side column of logo previews (Front, Back, Left, Right) ----
+
+// Return latest placed artwork node on a side (Konva-safe)
+function getLatestArtNode(side){
+  if (!side || !side.layerArt || typeof side.layerArt.getChildren !== 'function') return null;
+  const coll = side.layerArt.getChildren(); // Konva.Collection
+  const arr = typeof coll.toArray === 'function' ? coll.toArray() : Array.from(coll || []);
+  // Uploaded logos are Konva.Image nodes
+  const images = arr.filter(n => n && typeof n.getClassName === 'function' && n.getClassName() === 'Image');
+  return images.length ? images[images.length - 1] : null;
+}
+
+// Snapshot a Konva.Image node into a PDF-embeddable PNG
+async function embedKonvaNodeAsPng(pdf, node){
+  if (!node || typeof node.image !== 'function') return null;
+  const el = node.image(); if (!el) return null;
+  const sw = el.naturalWidth || el.width || 0;
+  const sh = el.naturalHeight || el.height || 0;
+  if (!sw || !sh) return null;
+
+  const cnv = document.createElement('canvas');
+  cnv.width = sw; cnv.height = sh;
+  cnv.getContext('2d').drawImage(el, 0, 0, sw, sh);
+  const ab = await (await fetch(cnv.toDataURL('image/png'))).arrayBuffer();
+  return await pdf.embedPng(ab);
+}
+
+// Layout for the right column (REUSE existing RIGHT_MARGIN from the grid)
+const boxW = 90, boxH = 90, gapY = 18;
+const colX = pageW - RIGHT_MARGIN - boxW; // <-- use existing RIGHT_MARGIN, do NOT redeclare
+let boxY = 480; // start near the grid; lower this to move the column down
+
+// Order: Front, Back, Left, Right (top -> bottom)
+const order = [
+  { label: 'Front', side: front },
+  { label: 'Back',  side: back  },
+  { label: 'Left',  side: left  },
+  { label: 'Right', side: right }
+];
+
+// Draw top → bottom
+for (const item of order){
+  // Label above each box
+  const t = `Logo: ${item.label}`;
+  const tw = font.widthOfTextAtSize(t, 9);
+  page.drawText(t, { x: colX + (boxW - tw)/2, y: boxY + boxH + 8, size: 9, font, color: rgb(0.25,0.25,0.25) });
+
+  // Box border
+  page.drawRectangle({
+    x: colX - 2, y: boxY - 2,
+    width: boxW + 4, height: boxH + 4,
+    borderColor: rgb(0,0,0), borderWidth: 2
+  });
+
+  // Image if that side has artwork; otherwise leave it blank
+  try {
+    const node = getLatestArtNode(item.side);
+    const img  = await embedKonvaNodeAsPng(pdf, node);
+    if (img){
+      const s  = Math.min(boxW / img.width, boxH / img.height);
+      const dw = img.width * s, dh = img.height * s;
+      page.drawImage(img, { x: colX + (boxW - dw)/2, y: boxY + (boxH - dh)/2, width: dw, height: dh });
+    }
+  } catch (e) {
+    console.warn('Logo preview failed for', item.label, e);
+    // leave box empty
+  }
+
+  // next box position (move downward)
+  boxY -= (boxH + gapY + 16);
+}
+    // Footer
+    const disclaimer="Images are for proofing purposes only. Final placement/size/color may vary. Color appearance varies by monitor.";
+    page.drawText(disclaimer,{x:60,y:120,size:9,font,color:rgb(0.25,0.25,0.25)});
+    page.drawText("Approved (Y/N): ______    Date: ______    Signature: __________________________",{x:60,y:90,size:10,font});
+    const ts=new Date(); page.drawText(`Generated: ${ts.toLocaleString()}`,{x:60,y:60,size:9,font,color:rgb(0.3,0.3,0.3)});
+
+    // Download
+    const bytes=await pdf.save();
+    const blob=new Blob([bytes],{type:'application/pdf'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+    a.download=`Proof_${(variantName||'HardHat').replace(/\s+/g,'')}.pdf`; a.click();
+  }
+
+  // Button cosmetics (JS-injected so WYSIWYG can’t strip)
+  Array.prototype.forEach.call(document.querySelectorAll('#vest-customizer-root .btn'), function(btn){
+    btn.style.display='inline-block';
+    btn.style.padding='10px 18px';
+    btn.style.borderRadius='8px';
+    btn.style.border='2px solid #111';
+    btn.style.background='linear-gradient(#ff8c00,#e67300)';
+    btn.style.color='#fff';
+    btn.style.fontWeight='600';
+    btn.style.fontSize='14px';
+    btn.style.boxShadow='0 3px 6px rgba(0,0,0,.25)';
+    btn.style.cursor='pointer';
+    btn.addEventListener('mouseenter', function(){ btn.style.transform='translateY(-2px)'; btn.style.boxShadow='0 6px 12px rgba(0,0,0,.3)'; });
+    btn.addEventListener('mouseleave', function(){ btn.style.transform=''; btn.style.boxShadow='0 3px 6px rgba(0,0,0,.25)'; });
+  });
+})();
+</script>
+</p>
