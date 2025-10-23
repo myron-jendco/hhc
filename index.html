@@ -159,6 +159,29 @@
 const LOGO_URL = "https://cdn11.bigcommerce.com/s-ap39xxpmw2/images/stencil/original/image-manager/tablet-banner.png";
 const STAGE_REFERENCE_INCHES = 6;
 
+let hasUnsavedChanges = false;
+const markUnsaved = () => { hasUnsavedChanges = true; };
+const markSaved = () => { hasUnsavedChanges = false; };
+
+const beforeUnloadMessage = 'Please download and save your proof before leaving this page.';
+function beforeUnloadHandler(event){
+  if (!hasUnsavedChanges) return undefined;
+  event.preventDefault();
+  event.returnValue = beforeUnloadMessage;
+  return beforeUnloadMessage;
+}
+
+window.addEventListener('beforeunload', beforeUnloadHandler, { capture: true });
+const previousBeforeUnload = typeof window.onbeforeunload === 'function' ? window.onbeforeunload : null;
+window.onbeforeunload = function(event){
+  let existingResult;
+  if (previousBeforeUnload) {
+    existingResult = previousBeforeUnload.call(this, event);
+  }
+  const result = beforeUnloadHandler(event);
+  return result !== undefined ? result : existingResult;
+};
+
 // Print area dimensions (as percentage of helmet base image)
 const PRINT_AREA_CONFIG = {
   front: { x: 0.30, y: 0.05, width: 0.40, height: 0.30 },  // centered rectangle
@@ -1491,6 +1514,13 @@ class Side {
       this.stage=new Konva.Stage({container:this.mountId,width:W,height:W});
       this.layerBg=new Konva.Layer();
       this.layerArt=new Konva.Layer();
+      this.layerArt.on('add', (evt)=>{
+        const node = evt && evt.target;
+        if (!node) return;
+        if (typeof node.name === 'function' && node.name() === 'draggableItem') {
+          markUnsaved();
+        }
+      });
       this.layerUI=new Konva.Layer();
       this.stage.add(this.layerBg,this.layerArt,this.layerUI);
 
@@ -1534,6 +1564,7 @@ class Side {
           this.layerArt.add(node);
           this.clamp(node);
           this.layerArt.draw();
+          markUnsaved();
           this.setSelected(node);
 
           window.lastUpload={side:this,node};
@@ -1547,6 +1578,7 @@ class Side {
         sel.destroy();
         this.layerArt.draw();
         this.setSelected(null);
+        markUnsaved();
       });
     }
 
@@ -1734,6 +1766,7 @@ class Side {
           this.layerArt.draw();
           this.setSelected(sel);
           this.hideTextControls();
+          markUnsaved();
           return;
         }
       }
@@ -1760,6 +1793,7 @@ class Side {
       this.setSelected(textNode);
       window.lastUpload={side:this,node:textNode};
       this.hideTextControls();
+      markUnsaved();
     }
 
     colorToHex(color){
@@ -1794,6 +1828,7 @@ class Side {
           this.clamp(node);
           this.layerArt.draw();
           this.layerUI.batchDraw();
+          markUnsaved();
         });
         node.on('transform',()=>{
           this.clamp(node);
@@ -1812,12 +1847,14 @@ class Side {
           this.clamp(node);
           this.layerArt.draw();
           this.layerUI.batchDraw();
+          markUnsaved();
         });
       }else{
         node.on('dragend',()=>{
           this.updateDPIForNode(node);
           this.layerArt.draw();
           this.layerUI.batchDraw();
+          markUnsaved();
         });
         node.on('transform',()=>{
           this.clamp(node);
@@ -1828,6 +1865,7 @@ class Side {
           this.updateDPIForNode(node);
           this.layerArt.draw();
           this.layerUI.batchDraw();
+          markUnsaved();
         });
       }
     }
@@ -1928,6 +1966,7 @@ class Side {
       this.attachHandlersForNode(clone);
       this.layerArt.add(clone); this.clamp(clone); this.layerArt.draw(); this.setSelected(clone);
       window.lastUpload={side:this,node:clone};
+      markUnsaved();
     }
   }
 
@@ -2238,6 +2277,24 @@ function autoFillOncePerVariant(key){
 // Initial pass
 autoFillOncePerVariant(variantSel.value);
 
+function attachUnsavedChangeListeners(){
+  const fields = document.querySelectorAll('#vest-customizer-root input, #vest-customizer-root select, #vest-customizer-root textarea');
+  fields.forEach(field => {
+    ['input','change'].forEach(evt => {
+      field.addEventListener(evt, event => {
+        if (event && 'isTrusted' in event && event.isTrusted === false) return;
+        if (field.type === 'file' && evt === 'change'){
+          const files = field.files;
+          if (!files || !files.length) return;
+        }
+        markUnsaved();
+      });
+    });
+  });
+}
+
+attachUnsavedChangeListeners();
+
   /* ----------------
    * PDF (2×2 grid, JPG/PNG aware)
    * ---------------- */
@@ -2481,6 +2538,8 @@ for (const item of order){
     const blob=new Blob([bytes],{type:'application/pdf'});
     const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
     a.download=`Proof_${(variantName||'HardHat').replace(/\s+/g,'')}.pdf`; a.click();
+    setTimeout(()=> URL.revokeObjectURL(a.href), 1000);
+    markSaved();
   }
 
   // Button cosmetics (JS-injected so WYSIWYG can’t strip)
