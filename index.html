@@ -163,24 +163,13 @@ let hasUnsavedChanges = false;
 const markUnsaved = () => { hasUnsavedChanges = true; };
 const markSaved = () => { hasUnsavedChanges = false; };
 
-const beforeUnloadMessage = 'Please download and save your proof before leaving this page.';
-function beforeUnloadHandler(event){
-  if (!hasUnsavedChanges) return undefined;
+window.addEventListener('beforeunload', (event) => {
+  if (!hasUnsavedChanges) return;
+  const message = 'Please download and save your proof before leaving this page.';
   event.preventDefault();
-  event.returnValue = beforeUnloadMessage;
-  return beforeUnloadMessage;
-}
-
-window.addEventListener('beforeunload', beforeUnloadHandler, { capture: true });
-const previousBeforeUnload = typeof window.onbeforeunload === 'function' ? window.onbeforeunload : null;
-window.onbeforeunload = function(event){
-  let existingResult;
-  if (previousBeforeUnload) {
-    existingResult = previousBeforeUnload.call(this, event);
-  }
-  const result = beforeUnloadHandler(event);
-  return result !== undefined ? result : existingResult;
-};
+  event.returnValue = message;
+  return message;
+});
 
 // Print area dimensions (as percentage of helmet base image)
 const PRINT_AREA_CONFIG = {
