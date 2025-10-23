@@ -143,7 +143,7 @@
 <div id="custInfo" style="display: grid; grid-template-columns: 180px 260px; gap: 6px 10px; align-items: center; max-width: 480px; margin-top: 12px;">
 <div style="grid-column: 1/-1; font-weight: 600; margin-bottom: 4px;"><u><font size="5">Customer Information</font></u></div>
 <span>Customer Name</span><input id="custName" type="text" placeholder="Company / Organization" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Contact Name</span><input id="contactName" type="text" placeholder="Full name" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Email</span><input id="custEmail" type="email" placeholder="name@example.com" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Phone</span><input id="custPhone" type="tel" placeholder="(555) 555-5555" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Sales Order #</span><input id="salesOrder" type="text" placeholder="e.g., SO-12345" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Notes</span><input id="custNotes" type="text" maxlength="140" placeholder="Enter up to 140 characters" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /></div>
-<div style="margin-top: 20px; text-align: left;"><button id="downloadProof" class="btn" style="background: #ff7a00; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer;" disabled="disabled" aria-disabled="true">Download Proof PDF</button></div>
+<div style="margin-top: 20px; text-align: left;"><button id="downloadProof" class="btn" style="background: #ff7a00; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer;">Download Proof PDF</button></div>
 </div>
 </div>
 <!-- Libraries -->
@@ -2292,26 +2292,6 @@ attachUnsavedChangeListeners();
     { id: 'salesOrder', label: 'Sales Order #' }
   ];
 
-  const downloadProofButton = document.getElementById('downloadProof');
-
-  function hasAllRequiredCustomerFieldsFilled() {
-    return REQUIRED_CUSTOMER_FIELDS.every(({ id }) => {
-      const el = document.getElementById(id);
-      if (!el) return false;
-      return ((el.value || '').trim().length > 0);
-    });
-  }
-
-  function updateDownloadButtonState() {
-    if (!downloadProofButton) return;
-    const enabled = hasAllRequiredCustomerFieldsFilled();
-    downloadProofButton.disabled = !enabled;
-    downloadProofButton.style.opacity = enabled ? '1' : '0.6';
-    downloadProofButton.style.cursor = enabled ? 'pointer' : 'not-allowed';
-    downloadProofButton.setAttribute('aria-disabled', enabled ? 'false' : 'true');
-    downloadProofButton.title = enabled ? '' : 'Fill in all required customer information to download the proof.';
-  }
-
   function validateRequiredCustomerFields(){
     const missing = [];
     let firstInvalid = null;
@@ -2348,15 +2328,9 @@ attachUnsavedChangeListeners();
       if (hasValue) {
         el.style.borderColor = '#ddd';
         el.setAttribute('aria-invalid', 'false');
-      } else {
-        el.style.borderColor = '#ef4444';
-        el.setAttribute('aria-invalid', 'true');
       }
-      updateDownloadButtonState();
     });
   });
-
-  updateDownloadButtonState();
 
   /* ----------------
    * PDF (2×2 grid, JPG/PNG aware)
@@ -2377,19 +2351,10 @@ attachUnsavedChangeListeners();
     return isJpg ? await pdf.embedJpg(ab) : await pdf.embedPng(ab);
   }
 
-  if (downloadProofButton) {
-    downloadProofButton.addEventListener('click', (event) => {
-      if (!validateRequiredCustomerFields()) {
-        event.preventDefault();
-        updateDownloadButtonState();
-        return;
-      }
-      makeProofPDF().catch(err => {
-        console.error('PDF generation error:', err);
-        alert('Could not generate PDF. See console for details.');
-      });
-    });
-  }
+  document.getElementById('downloadProof').addEventListener('click', ()=>{
+    if(!validateRequiredCustomerFields()) return;
+    makeProofPDF().catch(err=>{ console.error('PDF generation error:',err); alert('Could not generate PDF. See console for details.'); });
+  });
 
   async function makeProofPDF(){
     const key=variantSel.value;
