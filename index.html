@@ -142,7 +142,7 @@
 <!-- Customer Info -->
 <div id="custInfo" style="display: grid; grid-template-columns: 180px 260px; gap: 6px 10px; align-items: center; max-width: 480px; margin-top: 12px;">
 <div style="grid-column: 1/-1; font-weight: 600; margin-bottom: 4px;"><u><font size="5">Customer Information</font></u></div>
-<span>Customer Name</span><input id="custName" type="text" placeholder="Company / Organization" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Contact Name</span><input id="contactName" type="text" placeholder="Full name" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Email</span><input id="custEmail" type="email" placeholder="name@example.com" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Phone</span><input id="custPhone" type="tel" placeholder="(555) 555-5555" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Sales Order #</span><input id="salesOrder" type="text" placeholder="e.g., SO-12345" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /> <span>Notes</span><input id="custNotes" type="text" maxlength="140" placeholder="Enter up to 140 characters" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /></div>
+<span>Customer Name</span><input id="custName" type="text" placeholder="Company / Organization" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Contact Name</span><input id="contactName" type="text" placeholder="Full name" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Email</span><input id="custEmail" type="email" placeholder="name@example.com" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Phone</span><input id="custPhone" type="tel" placeholder="(555) 555-5555" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Sales Order #</span><input id="salesOrder" type="text" placeholder="e.g., SO-12345" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" required="required" /> <span>Notes</span><input id="custNotes" type="text" maxlength="140" placeholder="Enter up to 140 characters" style="width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;" /></div>
 <div style="margin-top: 20px; text-align: left;"><button id="downloadProof" class="btn" style="background: #ff7a00; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-size: 15px; cursor: pointer;">Download Proof PDF</button></div>
 </div>
 </div>
@@ -2284,6 +2284,54 @@ function attachUnsavedChangeListeners(){
 
 attachUnsavedChangeListeners();
 
+  const REQUIRED_CUSTOMER_FIELDS = [
+    { id: 'custName', label: 'Customer Name' },
+    { id: 'contactName', label: 'Contact Name' },
+    { id: 'custEmail', label: 'Email' },
+    { id: 'custPhone', label: 'Phone' },
+    { id: 'salesOrder', label: 'Sales Order #' }
+  ];
+
+  function validateRequiredCustomerFields(){
+    const missing = [];
+    let firstInvalid = null;
+
+    REQUIRED_CUSTOMER_FIELDS.forEach(({ id, label }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const value = (el.value || '').trim();
+      const isValid = value.length > 0;
+      el.style.borderColor = isValid ? '#ddd' : '#ef4444';
+      el.setAttribute('aria-invalid', isValid ? 'false' : 'true');
+      if (!isValid) {
+        missing.push(label);
+        if (!firstInvalid) {
+          firstInvalid = el;
+        }
+      }
+    });
+
+    if (firstInvalid) {
+      alert(`Please complete the required fields:\n- ${missing.join('\n- ')}`);
+      firstInvalid.focus();
+      return false;
+    }
+
+    return true;
+  }
+
+  REQUIRED_CUSTOMER_FIELDS.forEach(({ id }) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      const hasValue = (el.value || '').trim().length > 0;
+      if (hasValue) {
+        el.style.borderColor = '#ddd';
+        el.setAttribute('aria-invalid', 'false');
+      }
+    });
+  });
+
   /* ----------------
    * PDF (2×2 grid, JPG/PNG aware)
    * ---------------- */
@@ -2304,6 +2352,7 @@ attachUnsavedChangeListeners();
   }
 
   document.getElementById('downloadProof').addEventListener('click', ()=>{
+    if(!validateRequiredCustomerFields()) return;
     makeProofPDF().catch(err=>{ console.error('PDF generation error:',err); alert('Could not generate PDF. See console for details.'); });
   });
 
