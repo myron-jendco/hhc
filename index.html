@@ -1503,6 +1503,13 @@ class Side {
       this.stage=new Konva.Stage({container:this.mountId,width:W,height:W});
       this.layerBg=new Konva.Layer();
       this.layerArt=new Konva.Layer();
+      this.layerArt.on('add', (evt)=>{
+        const node = evt && evt.target;
+        if (!node) return;
+        if (typeof node.name === 'function' && node.name() === 'draggableItem') {
+          markUnsaved();
+        }
+      });
       this.layerUI=new Konva.Layer();
       this.stage.add(this.layerBg,this.layerArt,this.layerUI);
 
