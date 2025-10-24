@@ -99,12 +99,45 @@
 const LOGO_URL = "https://cdn11.bigcommerce.com/s-ap39xxpmw2/images/stencil/original/image-manager/tablet-banner.png";
 
 // Print area dimensions (as percentage of helmet base image)
-const PRINT_AREA_CONFIG = {
+const DEFAULT_PRINT_AREA_CONFIG = {
   front: { x: 0.30, y: 0.35, width: 0.40, height: 0.30 },  // centered rectangle
   back:  { x: 0.30, y: 0.35, width: 0.40, height: 0.30 },
   left:  { x: 0.35, y: 0.40, width: 0.30, height: 0.25 },  // side positioning
   right: { x: 0.35, y: 0.40, width: 0.30, height: 0.25 }
 };
+
+function normalizePrintAreaConfig(sideId, customConfig) {
+  const defaultConfig = DEFAULT_PRINT_AREA_CONFIG[sideId] || null;
+
+  if (customConfig === null) {
+    return null;
+  }
+
+  if (!customConfig || typeof customConfig !== 'object') {
+    return defaultConfig;
+  }
+
+  const keys = ['x', 'y', 'width', 'height'];
+  const normalized = {};
+  for (const key of keys) {
+    let value;
+    if (Object.prototype.hasOwnProperty.call(customConfig, key)) {
+      value = Number(customConfig[key]);
+    } else if (defaultConfig && Object.prototype.hasOwnProperty.call(defaultConfig, key)) {
+      value = defaultConfig[key];
+    } else {
+      return defaultConfig;
+    }
+
+    if (!Number.isFinite(value)) {
+      return defaultConfig;
+    }
+
+    normalized[key] = value;
+  }
+
+  return normalized;
+}
 
 const VARIANTS = {
   _10242629: {
@@ -1409,6 +1442,7 @@ class Side {
       this.bounds={x:0,y:0,w:W,h:W};
       this.baseNode=null;
       this.printAreaRect=null;
+      this.printAreaConfig = normalizePrintAreaConfig(this.id);
 
       // selection
       this.stage.on('click', e=>{
@@ -1465,24 +1499,30 @@ class Side {
     drawPrintArea() {
       if (this.printAreaRect) {
         this.printAreaRect.destroy();
+        this.printAreaRect = null;
       }
-      
-      const config = PRINT_AREA_CONFIG[this.id];
-      if (!config) return;
-      
+
+      this.printBounds = null;
+
+      const config = this.printAreaConfig;
+      if (!config) {
+        this.layerBg.draw();
+        return;
+      }
+
       const b = this.bounds;
       const printX = b.x + (b.w * config.x);
       const printY = b.y + (b.h * config.y);
       const printW = b.w * config.width;
       const printH = b.h * config.height;
-      
+
       this.printBounds = {
         x: printX,
         y: printY,
         w: printW,
         h: printH
       };
-      
+
       this.printAreaRect = new Konva.Rect({
         x: printX,
         y: printY,
@@ -1494,9 +1534,14 @@ class Side {
         listening: false,
         name: 'printArea'
       });
-      
+
       this.layerBg.add(this.printAreaRect);
       this.layerBg.draw();
+    }
+
+    setPrintAreaConfig(customConfig) {
+      this.printAreaConfig = normalizePrintAreaConfig(this.id, customConfig);
+      this.drawPrintArea();
     }
 
     updateDPIDisplay(dpi) {
@@ -1713,6 +1758,22 @@ async function applyVariant(key){
   const v = VARIANTS[key];
   if (!v) return;
   try {
+    const variantPrintArea = v.printArea;
+    const hasPerSidePrintArea = variantPrintArea && typeof variantPrintArea === 'object';
+
+    front.setPrintAreaConfig(hasPerSidePrintArea
+      ? (Object.prototype.hasOwnProperty.call(variantPrintArea, 'front') ? variantPrintArea.front : undefined)
+      : variantPrintArea);
+    back.setPrintAreaConfig(hasPerSidePrintArea
+      ? (Object.prototype.hasOwnProperty.call(variantPrintArea, 'back') ? variantPrintArea.back : undefined)
+      : variantPrintArea);
+    left.setPrintAreaConfig(hasPerSidePrintArea
+      ? (Object.prototype.hasOwnProperty.call(variantPrintArea, 'left') ? variantPrintArea.left : undefined)
+      : variantPrintArea);
+    right.setPrintAreaConfig(hasPerSidePrintArea
+      ? (Object.prototype.hasOwnProperty.call(variantPrintArea, 'right') ? variantPrintArea.right : undefined)
+      : variantPrintArea);
+
     await Promise.all([
       front.setBase(v.front),
       back.setBase(v.back),
